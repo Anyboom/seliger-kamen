@@ -1,4 +1,4 @@
 {
-  "*.{js,ts,vue}": ["eslint --fix --ignore-pattern '.nuxt/*'", "prettier --write"],
+  "*.{js,ts,vue}": ["eslint --fix", "prettier --write"],
   "*.{html,scss,css,json,md}": ["prettier --write"]
 }
