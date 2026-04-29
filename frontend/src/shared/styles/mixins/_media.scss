@@ -1,0 +1,37 @@
+@use "../core";
+
+@mixin breakpoint-xxl {
+  @media (max-width: core.$breakpoint-xxl) {
+    @content;
+  }
+}
+
+@mixin breakpoint-xl {
+  @media (max-width: core.$breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin breakpoint-lg {
+  @media (max-width: core.$breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin breakpoint-md {
+  @media (max-width: core.$breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin breakpoint-sm {
+  @media (max-width: core.$breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin breakpoint-xs {
+  @media (max-width: core.$breakpoint-xs) {
+    @content;
+  }
+}
