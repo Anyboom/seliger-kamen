@@ -1,0 +1,32 @@
+version: "3.7"
+name: "seliger-kamen"
+
+services:
+  seliger-kamen-frontend:
+    image: node:22
+    container_name: seliger-kamen-frontend
+    working_dir: /usr/src/app
+    volumes:
+      - ../../frontend:/usr/src/app
+    ports:
+      - "3000:3000"
+    command: [ "sh", "-c", "npm install && npm run dev" ]
+    networks:
+      - seliger-kamen
+  seliger-kamen-caddy:
+    container_name: seliger-kamen-caddy
+    image: caddy:2.7.4
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./configs/Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - seliger-kamen
+
+networks:
+  seliger-kamen:
+    driver: bridge
