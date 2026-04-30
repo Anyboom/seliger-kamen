@@ -1,6 +1,3 @@
-import { createApp } from "vue";
-import "./style.css";
-import App from "./App.vue";
-import { router } from "@/router/routes.ts";
+import { app } from "@/app/entrypoint/app.ts";
 
-createApp(App).use(router).mount("#app");
+app.mount("#app");
