@@ -5,6 +5,8 @@
 </template>
 
 <style lang="scss">
+  @use "@/shared/assets/styles/mixins";
+
   .main-layout {
     width: 1126px;
     max-width: 100%;
@@ -15,5 +17,7 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+
+    @include mixins.apply-text("body-1");
   }
 </style>
