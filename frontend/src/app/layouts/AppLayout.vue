@@ -4,11 +4,11 @@
 
   const route = useRoute();
 
-  const currentLayout = computed(() => route.meta.layoutComponent as VueElement);
+  const layout = computed(() => route.meta.layoutComponent as VueElement);
 </script>
 
 <template>
-  <component :is="currentLayout">
+  <component :is="layout">
     <slot></slot>
   </component>
 </template>
