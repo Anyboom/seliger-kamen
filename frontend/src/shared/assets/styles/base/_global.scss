@@ -1,0 +1,37 @@
+@use "../core";
+@use "../semantic";
+@use "../mixins";
+
+//TODO: Добавить цвета
+
+html {
+  scroll-behavior: smooth;
+  //scroll-padding-top: core.$color-accent;
+  //scrollbar-color: core.$color-rock-blue core.$color-accent-hover;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+
+body {
+  min-width: 380px;
+  position: relative;
+  overflow-x: hidden;
+  height: 100svh;
+
+  @include mixins.apply-text("body-1");
+}
+
+.container {
+  max-width: core.$breakpoint-lg;
+  margin: 0 auto;
+  padding: 0 clamp(#{core.$spacing-100}, 2%, #{core.$spacing-300});
+}
+
+#__nuxt {
+  min-height: 100%;
+}
+
+//::selection {
+//  background: core.$color-accent;
+//  color: core.$color-white;
+//}
