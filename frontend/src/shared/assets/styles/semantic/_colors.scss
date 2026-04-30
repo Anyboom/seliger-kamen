@@ -1,0 +1,17 @@
+@use "../core";
+
+$background-default: core.$white-950;
+$background-default-hover: core.$white-800;
+$background-default-secondary: core.$gray-50;
+$background-default-secondary-hover: core.$gray-100;
+
+$background-secondary: core.$gray-400;
+$background-secondary-hover: core.$gray-500;
+
+$background-primary: core.$yellow-600;
+$background-primary-hover: core.$yellow-700;
+
+$background-disabled: core.$gray-500;
+
+$text-default: core.$gray-800;
+$text-default-secondary: core.$gray-700;
