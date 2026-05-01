@@ -13,6 +13,7 @@ body {
   position: relative;
   overflow-x: hidden;
   height: 100svh;
+  background: semantic.$background-default-secondary;
 
   @include mixins.apply-text("body-1");
 }
