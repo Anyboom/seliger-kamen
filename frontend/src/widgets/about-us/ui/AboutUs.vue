@@ -30,7 +30,7 @@
   </section>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
   @use "@/shared/assets/styles/semantic";
   @use "@/shared/assets/styles/mixins";
   @use "@/shared/assets/styles/core";
