@@ -1,11 +1,15 @@
 <script setup lang="ts">
+  import { computed } from "vue";
+
   interface Props {
     name: string;
     width: string;
     height: string;
   }
 
-  defineProps<Props>();
+  const { name } = defineProps<Props>();
+
+  const spriteHref = computed(() => `${import.meta.env.BASE_URL}sprite.svg#${name}`);
 </script>
 
 <template>
@@ -14,6 +18,6 @@
     :width="width"
     :height="height"
   >
-    <use :href="`/sprite.svg#${name}`" />
+    <use :href="spriteHref" />
   </svg>
 </template>
