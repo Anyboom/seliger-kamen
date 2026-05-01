@@ -14,6 +14,7 @@
     {
       label: "Главная",
       href: "#",
+      active: true,
     },
     {
       label: "Наши работы",

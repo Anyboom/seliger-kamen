@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import { AppHeader } from "@/widgets/app-header";
+  import { AppBanner } from "@/widgets/app-banner";
 </script>
 <template>
-  <AppHeader colored />
+  <AppBanner />
 </template>
 
 <style scoped></style>
