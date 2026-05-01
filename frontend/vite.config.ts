@@ -14,4 +14,5 @@ export default defineConfig({
     },
   },
   base: "/seliger-kamen/",
+  // base: "/",
 });

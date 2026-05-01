@@ -1,9 +1,8 @@
+<script setup lang="ts">
+  import { AppHeader } from "@/widgets/app-header";
+</script>
 <template>
-  <div class="container">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias cupiditate deleniti, est eum excepturi laborum
-    maxime molestiae, nostrum quasi repellat reprehenderit repudiandae voluptatum? Dignissimos distinctio, dolores ex
-    ipsa maxime porro.
-  </div>
+  <AppHeader colored />
 </template>
 
 <style scoped></style>
