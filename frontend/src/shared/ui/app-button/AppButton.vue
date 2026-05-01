@@ -1,10 +1,13 @@
 <script setup lang="ts">
+  import { computed } from "vue";
+
   interface Props {
     variant?: "primary" | "secondary";
     rounded?: boolean;
     iconOnly?: boolean;
     size?: "small" | "medium";
     disabled?: boolean;
+    href?: string;
   }
 
   const {
@@ -13,11 +16,16 @@
     iconOnly = false,
     size = "medium",
     disabled = false,
+    href = undefined,
   } = defineProps<Props>();
+
+  const isLink = computed(() => href && !disabled);
+  const component = isLink.value ? "a" : "button";
 </script>
 
 <template>
-  <button
+  <component
+    :is="component"
     class="app-button"
     :class="{
       'app-button_variant_primary': variant == 'primary',
@@ -26,12 +34,13 @@
       'app-button_icon-only': iconOnly,
       'app-button_size_small': size === 'small',
       'app-button_size_medium': size === 'medium',
+      'app-button_disabled': disabled,
     }"
     :disabled="disabled"
     v-bind="$attrs"
   >
     <slot></slot>
-  </button>
+  </component>
 </template>
 
 <style lang="scss">
@@ -111,9 +120,11 @@
       }
     }
 
-    &:disabled {
+    &:disabled,
+    &_disabled {
       opacity: 0.5;
       cursor: not-allowed;
+      pointer-events: none;
     }
   }
 </style>
