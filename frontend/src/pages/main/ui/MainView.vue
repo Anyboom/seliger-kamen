@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import { AppBanner } from "@/widgets/app-banner";
+  import { MainBanner } from "@/widgets/main-banner";
 </script>
 <template>
-  <AppBanner />
+  <MainBanner />
 </template>
 
 <style scoped></style>
