@@ -13,6 +13,28 @@ services:
     command: [ "sh", "-c", "npm install && npm run dev" ]
     networks:
       - seliger-kamen
+  seliger-kamen-directus:
+    container_name: seliger-kamen-directus
+    image: directus/directus:11.10.0
+    ports:
+      - "8055:8055"
+    volumes:
+      - ../../directus/database:/directus/database
+      - ../../directus/uploads:/directus/uploads
+      - ../../directus/extensions:/directus/extensions
+    environment:
+      SECRET: "replace-with-random-value"
+      ADMIN_EMAIL: "admin@example.com"
+      ADMIN_PASSWORD: "d1r3ctu5"
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/data.db"
+      WEBSOCKETS_ENABLED: "true"
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: "true"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_SRC: "array:'self',blob:,https://*"
+      EXTENSIONS_AUTO_RELOAD: true
+    networks:
+      - seliger-kamen
   seliger-kamen-caddy:
     container_name: seliger-kamen-caddy
     image: caddy:2.7.4
