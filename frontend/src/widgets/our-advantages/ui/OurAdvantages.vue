@@ -10,7 +10,7 @@
       <h2 class="our-advantages__title">Наши преимущества</h2>
       <div class="our-advantages__content">
         <swiper
-          :slides-per-view="3.5"
+          :slides-per-view="`auto`"
           :space-between="24"
         >
           <swiper-slide
@@ -35,6 +35,10 @@
   @use "@/shared/assets/styles/semantic";
   @use "@/shared/assets/styles/mixins";
   @use "@/shared/assets/styles/core";
+
+  .swiper-slide {
+    width: fit-content !important;
+  }
 
   .our-advantages {
     padding: core.$spacing-800 0;
