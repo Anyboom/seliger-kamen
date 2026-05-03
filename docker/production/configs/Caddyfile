@@ -1,0 +1,19 @@
+seliger-kamen.ru {
+    reverse_proxy seliger-kamen-frontend:8080
+}
+
+directus.seliger-kamen.ru {
+    reverse_proxy seliger-kamen-directus:8055
+
+    handle /websocket {
+        reverse_proxy seliger-kamen-directus:8055 {
+            transport http {
+                keepalive 30s
+            }
+        }
+    }
+
+    request_body {
+        max_size 1GB
+    }
+}

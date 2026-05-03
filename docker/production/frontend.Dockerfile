@@ -3,7 +3,7 @@ FROM node:22-alpine AS build-stage
 WORKDIR /usr/src/app
 COPY ./frontend/ /usr/src/app/
 
-RUN npm run build
+RUN npm ci && npm run build
 
 FROM nginx:stable-alpine AS production-stage
 WORKDIR /usr/src/app
