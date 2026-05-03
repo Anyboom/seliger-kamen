@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import { AppIcon } from "@/shared/ui/app-icon";
+
+  defineOptions({ inheritAttrs: false });
 </script>
 
 <template>
@@ -34,6 +36,8 @@
     }
 
     &__logo {
+      display: flex;
+      width: fit-content;
       color: semantic.$text-default-negative;
       transition: color core.$transition-duration core.$transition-timing;
 

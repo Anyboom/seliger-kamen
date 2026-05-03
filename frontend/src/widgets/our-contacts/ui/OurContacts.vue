@@ -4,6 +4,8 @@
   import AppCard from "@/shared/ui/app-card/AppCard.vue";
   import { AppButton } from "@/shared/ui/app-button";
   import { AppIcon } from "@/shared/ui/app-icon";
+
+  defineOptions({ inheritAttrs: false });
 </script>
 
 <template>

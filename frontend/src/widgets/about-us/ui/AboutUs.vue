@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  defineOptions({ inheritAttrs: false });
+</script>
 
 <template>
   <section class="about-us">

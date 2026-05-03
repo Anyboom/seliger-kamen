@@ -9,6 +9,7 @@
   }
 
   defineProps<Props>();
+  defineOptions({ inheritAttrs: false });
 
   const items = ref([
     {
@@ -113,6 +114,7 @@
     }
 
     &__logo {
+      display: flex;
       color: semantic.$text-default-negative;
       transition: color core.$transition-duration core.$transition-timing;
 

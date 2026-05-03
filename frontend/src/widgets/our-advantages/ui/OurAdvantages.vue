@@ -2,6 +2,8 @@
   import { Swiper, SwiperSlide } from "swiper/vue";
   import "swiper/css";
   import AppCard from "@/shared/ui/app-card/AppCard.vue";
+
+  defineOptions({ inheritAttrs: false });
 </script>
 
 <template>

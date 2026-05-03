@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import { AppAccordion } from "@/shared/ui/app-accordion";
+
+  defineOptions({ inheritAttrs: false });
 </script>
 
 <template>
