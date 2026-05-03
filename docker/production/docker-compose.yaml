@@ -1,0 +1,54 @@
+version: "3.7"
+name: "seliger-kamen"
+
+services:
+  seliger-kamen-frontend:
+    image: node:22
+    container_name: seliger-kamen-frontend
+    working_dir: /usr/src/app
+    volumes:
+      - ../../frontend:/usr/src/app
+    ports:
+      - "3000:3000"
+    command: [ "sh", "-c", "npm install && npm run dev" ]
+    networks:
+      - seliger-kamen
+  seliger-kamen-directus:
+    container_name: seliger-kamen-directus
+    image: directus/directus:11.10.0
+    ports:
+      - "8055:8055"
+    volumes:
+      - ../../directus/database:/directus/database
+      - ../../directus/uploads:/directus/uploads
+      - ../../directus/extensions:/directus/extensions
+    environment:
+      SECRET: "replace-with-random-value"
+      ADMIN_EMAIL: "admin@example.com"
+      ADMIN_PASSWORD: "d1r3ctu5"
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/data.db"
+      WEBSOCKETS_ENABLED: "true"
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: "true"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_SRC: "array:'self',blob:,https://*"
+      EXTENSIONS_AUTO_RELOAD: true
+    networks:
+      - seliger-kamen
+  seliger-kamen-caddy:
+    container_name: seliger-kamen-caddy
+    image: caddy:2.7.4
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./configs/Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - seliger-kamen
+
+networks:
+  seliger-kamen:
+    driver: bridge
