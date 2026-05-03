@@ -13,7 +13,7 @@ services:
       - NET_ADMIN
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - ./data:/data
+      - caddy_data:/data
     networks:
       - seliger-kamen
 
@@ -43,6 +43,10 @@ services:
       CORS_ORIGIN: "true"
       CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_SRC: "array:'self',blob:,https://*"
       EXTENSIONS_AUTO_RELOAD: true
+
 networks:
   seliger-kamen:
     driver: bridge
+
+volumes:
+  caddy_data:

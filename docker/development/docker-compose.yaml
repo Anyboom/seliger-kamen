@@ -46,8 +46,12 @@ services:
       - NET_ADMIN
     volumes:
       - ./configs/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
     networks:
       - seliger-kamen
+
+volumes:
+  caddy_data:
 
 networks:
   seliger-kamen:
