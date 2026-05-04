@@ -1,7 +1,3 @@
-{
-    tls off
-}
-
 seliger-kamen.ru {
     reverse_proxy seliger-kamen-frontend:8080
 }
