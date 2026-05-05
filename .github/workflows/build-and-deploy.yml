@@ -23,7 +23,6 @@ jobs:
           no-cache: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/seliger-kamen-directus:${{ github.sha }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/seliger-kamen-directus:latest
       - name: Build and push frontend
         uses: docker/build-push-action@v4
         with:
@@ -33,7 +32,6 @@ jobs:
           no-cache: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/seliger-kamen-frontend:${{ github.sha }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/seliger-kamen-frontend:latest
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
@@ -54,4 +52,4 @@ jobs:
           scp -o StrictHostKeyChecking=no docker/production/docker-compose.yaml ${{ secrets.SSH_USER}}@${{secrets.SSH_HOST}}:docker-compose.yml
       - name: Start application
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }} ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} ADMIN_SECRET=${{ secrets.ADMIN_SECRET }} docker compose up -d --force-recreate && exit"
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "DOCKER_HASH=${{ github.sha }} ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }} ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} ADMIN_SECRET=${{ secrets.ADMIN_SECRET }} docker compose up -d --force-recreate && exit"

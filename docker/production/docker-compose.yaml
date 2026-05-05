@@ -18,14 +18,14 @@ services:
       - seliger-kamen
 
   seliger-kamen-frontend:
-    image: danilkavolkov/seliger-kamen-frontend:latest
+    image: danilkavolkov/seliger-kamen-frontend:${DOCKER_HASH}
     container_name: seliger-kamen-frontend
     pull_policy: always
     networks:
       - seliger-kamen
 
   seliger-kamen-directus:
-    image: danilkavolkov/seliger-kamen-directus:latest
+    image: danilkavolkov/seliger-kamen-directus:${DOCKER_HASH}
     container_name: seliger-kamen-directus
     pull_policy: always
     networks:
