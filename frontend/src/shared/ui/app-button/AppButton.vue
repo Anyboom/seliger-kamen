@@ -111,7 +111,7 @@
 
       &_secondary {
         background: semantic.$background-secondary;
-        color: semantic.$text-default;
+        color: semantic.$text-default-negative;
 
         @include mixins.hover {
           &:not(:disabled) {

@@ -42,6 +42,7 @@
         <a
           href="/"
           class="app-header__logo"
+          aria-label="Логотип"
         >
           <AppIcon
             name="logo"
@@ -61,6 +62,7 @@
           <AppButton
             rounded
             icon-only
+            aria-label="Ссылка на вк"
           >
             <AppIcon
               name="social-vk"
@@ -71,6 +73,7 @@
           <AppButton
             rounded
             icon-only
+            aria-label="Ссылка на макс"
           >
             <AppIcon
               name="social-max"

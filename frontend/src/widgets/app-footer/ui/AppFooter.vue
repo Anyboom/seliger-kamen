@@ -10,6 +10,7 @@
       <a
         href="/"
         class="app-footer__logo"
+        aria-label="Логотип"
       >
         <AppIcon
           name="logo"
