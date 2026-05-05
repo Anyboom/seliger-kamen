@@ -1,13 +1,7 @@
 FROM node:22-alpine AS build-stage
 
 WORKDIR /usr/src/app
-
-COPY ./frontend/package*.json ./
-COPY ./frontend/package-lock.json* ./
-
-RUN npm ci
-
-COPY ./frontend/ ./
+COPY ./frontend/ /usr/src/app/
 
 RUN npm run build
 
