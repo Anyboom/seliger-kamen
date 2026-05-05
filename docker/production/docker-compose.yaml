@@ -20,12 +20,14 @@ services:
   seliger-kamen-frontend:
     image: danilkavolkov/seliger-kamen-frontend:latest
     container_name: seliger-kamen-frontend
+    pull_policy: always
     networks:
       - seliger-kamen
 
   seliger-kamen-directus:
     image: danilkavolkov/seliger-kamen-directus:latest
     container_name: seliger-kamen-directus
+    pull_policy: always
     networks:
       - seliger-kamen
     volumes:
