@@ -53,7 +53,7 @@ jobs:
           scp -o StrictHostKeyChecking=no docker/production/docker-compose.yaml ${{ secrets.SSH_USER}}@${{secrets.SSH_HOST}}:docker-compose.yml
       - name: Pull application
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker system prune -a -f && docker compose pull && exit"
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose down && docker system prune -a -f && docker compose pull && exit"
       - name: Start application
         run: |
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }} ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} ADMIN_SECRET=${{ secrets.ADMIN_SECRET }} docker compose up -d --force-recreate && exit"
