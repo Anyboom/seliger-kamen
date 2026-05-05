@@ -20,13 +20,14 @@
   } = defineProps<Props>();
 
   const isLink = computed(() => href && !disabled);
-  const component = isLink.value ? "a" : "button";
+  const component = computed(() => (isLink.value ? "a" : "button"));
 </script>
 
 <template>
   <component
     :is="component"
     class="app-button"
+    :href="href"
     :class="{
       'app-button_variant_primary': variant == 'primary',
       'app-button_variant_secondary': variant == 'secondary',

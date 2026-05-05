@@ -9,6 +9,7 @@
   @use "@/shared/assets/styles/core";
 
   .main-layout {
+    height: 100%;
     padding: core.$spacing-600;
   }
 </style>

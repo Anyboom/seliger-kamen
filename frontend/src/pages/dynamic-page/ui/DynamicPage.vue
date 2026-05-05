@@ -4,6 +4,7 @@
   import { useRoute } from "vue-router";
   import { useHead } from "@unhead/vue";
   import { onMounted } from "vue";
+  import { Error } from "@/widgets/error";
 
   defineOptions({ inheritAttrs: false });
 
@@ -15,15 +16,20 @@
     if (currentPage) {
       useHead({
         title: currentPage.title,
+        meta: [{ name: "description", content: currentPage.description }],
       });
     }
   });
 </script>
 
 <template>
-  <DynamicComponent
-    v-for="(block, index) of currentPage?.blocks"
-    :key="index"
-    :block="block"
-  />
+  <template v-if="currentPage?.matched">
+    <DynamicComponent
+      v-for="(block, index) of currentPage?.blocks"
+      :key="index"
+      :block="block"
+    />
+  </template>
+
+  <Error v-else />
 </template>
