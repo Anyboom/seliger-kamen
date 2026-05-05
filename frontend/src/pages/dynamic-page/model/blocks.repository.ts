@@ -7,6 +7,7 @@ import { OftenAskBlock } from "@/pages/dynamic-page/blocks/often-ask.block.ts";
 import { OurContactsBlock } from "@/pages/dynamic-page/blocks/our-contacts.block.ts";
 import { AppFooterBlock } from "@/pages/dynamic-page/blocks/app-footer.block.ts";
 import { OurWorksBlock } from "@/pages/dynamic-page/blocks/our-works.block.ts";
+import { MainCatalogBlock } from "@/pages/dynamic-page/blocks/main-catalog.block.ts";
 
 export class BlocksRepository {
   private static readonly blocks: Map<string, BaseBlock> = new Map<string, BaseBlock>([
@@ -18,6 +19,7 @@ export class BlocksRepository {
     [OurContactsBlock.name, new OurContactsBlock()],
     [AppFooterBlock.name, new AppFooterBlock()],
     [OurWorksBlock.name, new OurWorksBlock()],
+    [MainCatalogBlock.name, new MainCatalogBlock()],
   ]);
 
   static get(name: string): BaseBlock {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { Image } from "primevue";
+  import Image from "primevue/image";
 </script>
 
 <template>
