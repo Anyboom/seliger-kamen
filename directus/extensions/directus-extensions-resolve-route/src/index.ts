@@ -1,7 +1,7 @@
 import { defineEndpoint } from '@directus/extensions-sdk';
 import { matchRoute } from "./utils/match-route";
 
-async function extracted(service, req, res, exceptions) {
+async function extracted(service, req, res) {
 	const routeService = new service('pages', {
 		schema: req.schema,
 		accountability: req.accountability
@@ -10,11 +10,10 @@ async function extracted(service, req, res, exceptions) {
 	const path = Array.isArray(req.params.path) ? req.params.path : [req.params.path];
 
 	try {
-		console.log("fuuc");
-
 		const routes = await routeService.readByQuery({
 			fields: ["title", "slug", "blocks.collection", "blocks.sort", "blocks.item.*.*.*.*", "description"],
 		});
+
 		const requestedPath = '/' + path.join('/');
 
 		for (const route of routes) {
@@ -32,21 +31,21 @@ async function extracted(service, req, res, exceptions) {
 
 		return res.json({matched: false});
 	} catch (error) {
-		throw new exceptions.ServiceUnavailableException(error.message);
+		throw error;
 	}
 }
 
 export default defineEndpoint({
 	id: 'resolve-route',
-	handler: (router, { services, exceptions }) => {
+	handler: (router, { services }) => {
 		const { ItemsService } = services;
 
-		router.get('/:path*', async (req, res) => {
-			return await extracted(ItemsService, req, res, exceptions);
+		router.get('/:path(.*)*', async (req, res) => {
+			return await extracted(ItemsService, req, res);
 		});
 
 		router.get('', async (req, res) => {
-			return await extracted(ItemsService, req, res, exceptions);
+			return await extracted(ItemsService, req, res);
 		});
 	},
 });
