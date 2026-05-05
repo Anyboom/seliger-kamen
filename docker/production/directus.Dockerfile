@@ -8,4 +8,4 @@ RUN npm install && npm run build
 
 FROM directus/directus:11.10.0 AS production-stage
 
-COPY --from=build-stage /usr/src/app/directus-extensions-resolve-route/dist ./extensions/directus-extensions-resolve-route/dist
+COPY --from=build-stage /usr/src/app/directus-extensions-resolve-route ./extensions/directus-extensions-resolve-route
