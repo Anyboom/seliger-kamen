@@ -18,8 +18,8 @@ body {
   @include mixins.apply-text("body-1");
 }
 
-#app {
-  height: 100%;
+.app {
+  min-height: 100%;
 }
 
 ::selection {
