@@ -1,7 +1,7 @@
 import { defineEndpoint } from '@directus/extensions-sdk';
 import { matchRoute } from "./utils/match-route";
 
-async function extracted(service, req, res) {
+async function extracted(service: any, req: any, res: any) {
 	const routeService = new service('pages', {
 		schema: req.schema,
 		accountability: req.accountability

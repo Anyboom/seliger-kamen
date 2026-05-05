@@ -1,16 +1,23 @@
-export function matchRoute(pattern: string, url: string) {
+export function matchRoute(pattern: string, url: string): Record<string, string> | null {
     const patternParts = pattern.split('/');
     const urlParts = url.split('/');
 
     if (patternParts.length !== urlParts.length) return null;
 
-    const params = {};
+    const params: Record<string, string> = {};
 
     for (let i = 0; i < patternParts.length; i++) {
-        if (patternParts[i].startsWith(':')) {
-            const paramName = patternParts[i].substring(1);
-            params[paramName] = urlParts[i];
-        } else if (patternParts[i] !== urlParts[i]) {
+        const patternPart = patternParts[i];
+        const urlPart = urlParts[i];
+
+        if (patternPart == undefined || urlPart == undefined) {
+            return null;
+        }
+
+        if (patternPart.startsWith(':')) {
+            const paramName = patternPart.slice(1);
+            params[paramName] = urlPart;
+        } else if (patternPart !== urlPart) {
             return null;
         }
     }
