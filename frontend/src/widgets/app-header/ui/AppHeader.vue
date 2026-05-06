@@ -59,6 +59,9 @@
           <span>г. Пено, Тарасова. 2</span>
           <a href="tel:89105391969">8 910 539 19 69</a>
         </div>
+        <div class="app-header__contacts">
+          <a href="mailto:danilka.volkov.02@mail.ru">danilka.volkov.02@mail.ru</a>
+        </div>
         <div class="app-header__socials">
           <AppButton
             rounded
