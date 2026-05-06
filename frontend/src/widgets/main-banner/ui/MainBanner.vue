@@ -7,7 +7,7 @@
 <template>
   <div class="app-banner">
     <div class="app-banner__wrapper">
-      <AppHeader />
+      <AppHeader :colored="false" />
       <div class="app-banner__body">
         <h1 class="app-banner__title">Селигер Камень</h1>
         <span class="app-banner__caption">

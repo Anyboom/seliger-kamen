@@ -8,7 +8,8 @@
     colored?: boolean;
   }
 
-  defineProps<Props>();
+  const { colored = true } = defineProps<Props>();
+
   defineOptions({ inheritAttrs: false });
 
   const items = ref([
@@ -99,11 +100,12 @@
   @use "@/shared/assets/styles/core";
 
   .app-header {
-    padding: core.$spacing-400;
-    border-radius: core.$radius-200;
+    $this: &;
 
     &_colored {
-      background: semantic.$background-default-negative;
+      #{$this}__wrapper {
+        background: semantic.$background-default-negative;
+      }
     }
 
     &_container {
@@ -111,6 +113,8 @@
     }
 
     &__wrapper {
+      padding: core.$spacing-400;
+      border-radius: core.$radius-200;
       display: flex;
       flex-direction: column;
       gap: core.$spacing-300;

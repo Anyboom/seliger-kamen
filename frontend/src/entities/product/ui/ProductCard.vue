@@ -29,7 +29,9 @@
     &__overlay {
       position: absolute;
       inset: 0;
-      display: none;
+      display: flex;
+      opacity: 0;
+      transition: opacity core.$transition-duration core.$transition-timing;
       align-items: center;
       justify-content: center;
       background: rgba(0, 0, 0, 0.3);
@@ -49,7 +51,7 @@
 
     @include mixins.hover {
       #{$this}__overlay {
-        display: flex;
+        opacity: 1;
       }
     }
   }
