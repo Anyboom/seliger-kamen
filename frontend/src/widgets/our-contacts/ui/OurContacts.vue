@@ -81,12 +81,12 @@
   }
 
   .our-contacts {
-    padding: core.$spacing-800 0;
+    padding: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-800}) 0;
 
     &__cards {
       display: flex;
       flex-direction: column;
-      gap: core.$spacing-400;
+      gap: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-400});
     }
 
     &__card {
@@ -104,14 +104,19 @@
     &__wrapper {
       display: grid;
       grid-template-columns: 7fr 5fr;
-      gap: core.$spacing-600;
+      gap: clamp(#{core.$spacing-300}, 2dvw, #{core.$spacing-600});
+
       @include mixins.container;
+      @include mixins.breakpoint-sm {
+        display: flex;
+        flex-direction: column;
+      }
     }
 
     &__body {
       display: flex;
       flex-direction: column;
-      gap: core.$spacing-600;
+      gap: clamp(#{core.$spacing-300}, 2dvw, #{core.$spacing-600});
     }
 
     &__title {
