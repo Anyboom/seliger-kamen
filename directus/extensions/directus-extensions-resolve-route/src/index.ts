@@ -11,7 +11,7 @@ async function extracted(service: any, req: any, res: any) {
 
 	try {
 		const routes = await routeService.readByQuery({
-			fields: ["title", "slug", "blocks.collection", "blocks.sort", "blocks.item.*.*.*.*", "description"],
+			fields: ["id", "slug"],
 		});
 
 		const requestedPath = '/' + path.join('/');
@@ -20,11 +20,15 @@ async function extracted(service: any, req: any, res: any) {
 			const params = matchRoute(route.slug, requestedPath);
 
 			if (params) {
+				const page = await routeService.readOne(route.id, {
+					fields: ["title", "slug", "blocks.collection", "blocks.sort", "blocks.item.*.*.*.*", "description"],
+				})
+
 				return res.json({
 					matched: true,
-					template: route.slug,
+					template: page.slug,
 					params: params,
-					...route
+					...page
 				});
 			}
 		}
