@@ -27,7 +27,7 @@
   @use "@/shared/assets/styles/core";
 
   .often-ask {
-    padding: core.$spacing-800 0;
+    padding: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-800}) 0;
 
     &__wrapper {
       @include mixins.container;
@@ -35,7 +35,7 @@
 
     &__title {
       color: semantic.$text-default;
-      margin-bottom: core.$spacing-800;
+      margin-bottom: clamp(#{core.$spacing-400}, 2dvw, #{core.$spacing-800});
 
       @include mixins.apply-text("heading-2");
     }
@@ -45,6 +45,12 @@
       grid-template-columns: 1fr 1fr;
       grid-column-gap: core.$spacing-600;
       grid-row-gap: core.$spacing-300;
+
+      @include mixins.breakpoint-sm {
+        display: flex;
+        flex-direction: column;
+        gap: core.$spacing-200;
+      }
     }
   }
 </style>
