@@ -29,7 +29,7 @@
   @use "@/shared/assets/styles/core";
 
   .our-works {
-    padding: core.$spacing-800 0;
+    padding: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-800}) 0;
 
     &__wrapper {
       @include mixins.container;
@@ -39,13 +39,25 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: core.$spacing-800;
+      margin-bottom: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-800});
     }
 
     &__body {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: core.$spacing-600;
+      gap: clamp(#{core.$spacing-300}, 2dvw, #{core.$spacing-600});
+
+      @include mixins.breakpoint-lg {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @include mixins.breakpoint-md {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include mixins.breakpoint-xs {
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
 
     &__item {

@@ -14,6 +14,17 @@
         <swiper
           :slides-per-view="`auto`"
           :space-between="24"
+          :breakpoints="{
+            320: {
+              spaceBetween: 12,
+            },
+            480: {
+              spaceBetween: 18,
+            },
+            640: {
+              spaceBetween: 24,
+            },
+          }"
         >
           <swiper-slide
             v-for="index in 8"
