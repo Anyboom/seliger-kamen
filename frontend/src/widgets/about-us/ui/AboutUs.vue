@@ -9,6 +9,7 @@
         <img
           src="/images/about_background.png"
           alt="#"
+          class="about-us__image"
         />
       </div>
       <div class="about-us__body">
@@ -38,29 +39,44 @@
   @use "@/shared/assets/styles/core";
 
   .about-us {
-    padding: core.$spacing-800 0;
+    padding: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-800}) 0;
 
     &__wrapper {
       display: grid;
       grid-template-columns: 5fr 7fr;
-      gap: core.$spacing-600;
+      gap: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-600});
+
       @include mixins.container;
+
+      @include mixins.breakpoint-sm {
+        display: flex;
+        flex-direction: column;
+      }
     }
 
     &__image-wrapper {
       max-height: 420px;
       overflow: hidden;
       border-radius: core.$radius-200;
+
+      @include mixins.breakpoint-sm {
+        max-height: 250px;
+      }
+    }
+
+    &__image {
+      width: 100%;
     }
 
     &__body {
       display: flex;
       flex-direction: column;
-      gap: core.$spacing-600;
+      gap: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-600});
     }
 
     &__title {
       color: semantic.$text-default;
+
       @include mixins.apply-text("heading-2");
     }
 

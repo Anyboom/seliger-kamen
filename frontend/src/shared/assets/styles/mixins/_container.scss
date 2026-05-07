@@ -1,8 +1,8 @@
 @use "../core";
 
 @mixin container {
-  max-width: core.$breakpoint-lg;
+  max-width: core.$breakpoint-xl;
   margin: 0 auto;
-  padding-left: clamp(#{core.$spacing-100}, 2%, #{core.$spacing-300});
-  padding-right: clamp(#{core.$spacing-100}, 2%, #{core.$spacing-300});
+  padding-left: clamp(#{core.$spacing-100}, 1%, #{core.$spacing-300});
+  padding-right: clamp(#{core.$spacing-100}, 1%, #{core.$spacing-300});
 }

@@ -10,6 +10,6 @@
 
   .main-layout {
     height: 100%;
-    padding: core.$spacing-600;
+    padding: clamp(#{core.$spacing-100}, 1%, #{core.$spacing-600}) 0;
   }
 </style>
