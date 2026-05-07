@@ -2,7 +2,7 @@
   import { AppIcon } from "@/shared/ui/app-icon";
   import { AppButton } from "@/shared/ui/app-button";
   import { AppMenu } from "@/shared/ui/app-menu";
-  import { ref } from "vue";
+  import { ref, useTemplateRef } from "vue";
 
   interface Props {
     colored?: boolean;
@@ -11,6 +11,8 @@
   const { colored = true } = defineProps<Props>();
 
   defineOptions({ inheritAttrs: false });
+
+  const menu = useTemplateRef("appMenu");
 
   const items = ref([
     {
@@ -36,7 +38,11 @@
 <template>
   <header
     class="app-header"
-    :class="{ 'app-header_colored': colored, 'app-header_container': colored }"
+    :class="{
+      'app-header_colored': colored,
+      'app-header_container': colored,
+      'app-header_mobile-menu-open': menu?.isShowMobileMenu,
+    }"
   >
     <div class="app-header__wrapper">
       <div class="app-header__top">
@@ -87,11 +93,14 @@
           </AppButton>
         </div>
 
-        <AppButton>Заказать звонок</AppButton>
+        <AppButton class="app-header__form-button">Заказать звонок</AppButton>
       </div>
       <div class="app-header__delimiter"></div>
       <div class="app-header__bottom">
-        <AppMenu :items="items" />
+        <AppMenu
+          ref="appMenu"
+          :items="items"
+        />
       </div>
     </div>
   </header>
@@ -115,15 +124,35 @@
       @include mixins.container;
     }
 
+    &_mobile-menu-open {
+      #{$this}__logo {
+        color: semantic.$text-default;
+      }
+    }
+
     &__wrapper {
       padding: core.$spacing-400;
       border-radius: core.$radius-200;
       display: flex;
       flex-direction: column;
       gap: core.$spacing-300;
+
+      @include mixins.breakpoint-sm {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    &__form-button {
+      @include mixins.breakpoint-md {
+        display: none;
+      }
     }
 
     &__logo {
+      z-index: 1000;
+      position: relative;
       display: flex;
       color: semantic.$text-default-negative;
       transition: color core.$transition-duration core.$transition-timing;
@@ -142,6 +171,10 @@
     &__socials {
       display: flex;
       gap: core.$spacing-300;
+
+      @include mixins.breakpoint-md {
+        display: none;
+      }
     }
 
     &__contacts {
@@ -151,6 +184,10 @@
       color: semantic.$text-default-negative;
 
       @include mixins.apply-text("body-3-strong");
+
+      @include mixins.breakpoint-sm {
+        display: none;
+      }
 
       a {
         color: semantic.$text-default-negative;
@@ -167,6 +204,10 @@
       width: 100%;
       background: semantic.$background-primary;
       opacity: 0.2;
+
+      @include mixins.breakpoint-sm {
+        display: none;
+      }
     }
   }
 </style>
