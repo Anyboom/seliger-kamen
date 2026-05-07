@@ -46,6 +46,7 @@ services:
       CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_SRC: "array:'self',blob:,https://*"
       EXTENSIONS_AUTO_RELOAD: true
       CACHE_ENABLED: true
+      CACHE_AUTO_PURGE: true
 
 networks:
   seliger-kamen:
