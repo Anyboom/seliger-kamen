@@ -13,7 +13,7 @@
 
   .app-card {
     border-radius: core.$radius-200;
-    padding: core.$spacing-400;
+    padding: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-400});
     background: semantic.$background-default;
   }
 </style>

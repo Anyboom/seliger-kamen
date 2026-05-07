@@ -44,7 +44,7 @@
     &__wrapper {
       display: grid;
       grid-template-columns: 5fr 7fr;
-      gap: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-600});
+      gap: clamp(#{core.$spacing-400}, 2dvw, #{core.$spacing-800});
 
       @include mixins.container;
 

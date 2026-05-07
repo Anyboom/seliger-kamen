@@ -43,7 +43,7 @@
   }
 
   .our-advantages {
-    padding: core.$spacing-800 0;
+    padding: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-800}) 0;
 
     &__wrapper {
       @include mixins.container;
@@ -51,7 +51,7 @@
 
     &__title {
       color: semantic.$text-default;
-      margin-bottom: core.$spacing-800;
+      margin-bottom: clamp(#{core.$spacing-400}, 2dvw, #{core.$spacing-800});
 
       @include mixins.apply-text("heading-2");
     }
@@ -61,6 +61,10 @@
       flex-direction: column;
       gap: core.$spacing-200;
       width: 350px;
+
+      @include mixins.breakpoint-sm {
+        width: 300px;
+      }
 
       &-title {
         color: semantic.$text-default;
