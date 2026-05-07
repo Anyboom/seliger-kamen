@@ -45,6 +45,7 @@ services:
       CORS_ORIGIN: "true"
       CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_SRC: "array:'self',blob:,https://*"
       EXTENSIONS_AUTO_RELOAD: true
+      CACHE_ENABLED: true
 
 networks:
   seliger-kamen:
