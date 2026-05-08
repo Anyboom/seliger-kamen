@@ -53,9 +53,22 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+      link: [
+        {
+          rel: "icon",
+          type: "image/x-icon",
+          href: "/favicon.ico",
+        },
+        {
+          rel: "preconnect",
+          href: "https://directus.seliger-kamen.ru",
+        },
+      ],
       title: "Селигер Камень",
       charset: "utf-8",
+      htmlAttrs: {
+        lang: "ru",
+      },
       viewport: "width=device-width, initial-scale=1",
     },
   },

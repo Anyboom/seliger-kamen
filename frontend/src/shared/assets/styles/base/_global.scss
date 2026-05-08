@@ -22,6 +22,12 @@ body {
   min-height: 100%;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 ::selection {
   background: semantic.$background-primary;
   color: semantic.$text-default-negative;

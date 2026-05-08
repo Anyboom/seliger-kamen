@@ -1,11 +1,11 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="error-layout">
+  <main class="error-layout">
     <div class="error-layout__wrapper">
       <slot></slot>
     </div>
-  </div>
+  </main>
 </template>
 
 <style lang="scss">

@@ -1,8 +1,8 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="main-layout">
+  <main class="main-layout">
     <slot></slot>
-  </div>
+  </main>
 </template>
 
 <style lang="scss">
