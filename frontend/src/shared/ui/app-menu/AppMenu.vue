@@ -34,10 +34,10 @@
     normalizedCurrentPath = normalizedCurrentPath.toLowerCase();
 
     if (itemPath !== "/") {
-      itemPath = itemPath.replace(/\/$/, "");
+      itemPath = itemPath?.replace(/\/$/, "");
     }
 
-    itemPath = itemPath.toLowerCase();
+    itemPath = itemPath?.toLowerCase();
 
     if (itemPath === "/") {
       return normalizedCurrentPath === "/" || normalizedCurrentPath === "";
@@ -124,9 +124,11 @@
       z-index: 1000;
       position: relative;
       display: none;
+      opacity: 0;
 
       @include mixins.breakpoint-sm {
         display: block;
+        opacity: 1;
       }
     }
 

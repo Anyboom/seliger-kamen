@@ -3,8 +3,8 @@
   import AppCard from "~/shared/ui/app-card/AppCard.vue";
   import { AppButton } from "~/shared/ui/app-button";
   import { AppIcon } from "~/shared/ui/app-icon";
-  import { getPlaceShops, type PlaceShop } from "~/entities/place-shop";
-  import { onMounted, ref } from "vue";
+  import { getPlaceShops } from "~/entities/place-shop";
+  import { computed } from "vue";
   import type { Block } from "~/pages/dynamic-page";
   import { cleanPhoneNumber } from "~/shared/lib/clean-phone-number";
 
@@ -18,11 +18,9 @@
 
   defineOptions({ inheritAttrs: false });
 
-  const places = ref<PlaceShop[]>([]);
+  const { data: placeShopData } = await getPlaceShops();
 
-  onMounted(async () => {
-    places.value = await getPlaceShops();
-  });
+  const places = computed(() => placeShopData?.value?.data);
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 export function pathDirectus(ssr: boolean = true) {
   if (import.meta.env.SSR && ssr) {
+    // eslint-disable-next-line sonarjs/no-clear-text-protocols
     return "http://seliger-kamen-directus:8055";
   }
 

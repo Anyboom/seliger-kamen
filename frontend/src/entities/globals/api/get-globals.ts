@@ -1,11 +1,7 @@
-import { useRuntimeConfig } from "#app";
+import { useAsyncData } from "#app";
 import { pathDirectus } from "~/shared/api/path-directus";
+import type { Global } from "~/entities/globals";
 
 export async function getGlobals() {
-  const { data } = await $fetch<any>(`${pathDirectus()}/items/globals`);
-
-  return {
-    id: data.id,
-    email: data.email,
-  };
+  return useAsyncData<{ data: Global }>("globals", () => $fetch(`${pathDirectus()}/items/globals`));
 }

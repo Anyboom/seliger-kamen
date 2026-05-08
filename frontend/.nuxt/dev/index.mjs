@@ -789,6 +789,7 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
+    "directusClient": "",
     "primevue": {
       "usePrimeVue": true,
       "autoImport": false,
@@ -7926,7 +7927,8 @@ const _inlineRuntimeConfig = {
         ""
       ]
     }
-  }
+  },
+  "directusServer": ""
 };
 const envOptions = {
   prefix: "NITRO_",
@@ -9330,7 +9332,7 @@ const _Y0JzXdsPex2CzyfOpM7KZaMV6TzVKnax9pWBExgLuRw = (function(nitro) {
 
 const rootDir = "/usr/src/app";
 
-const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"}],"style":[],"script":[],"noscript":[],"title":"Селигер Камень","charset":"utf-8","viewport":"width=device-width, initial-scale=1"};
+const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"},{"rel":"preconnect","href":"https://directus.seliger-kamen.ru"}],"style":[],"script":[],"noscript":[],"title":"Селигер Камень","charset":"utf-8","htmlAttrs":{"lang":"ru"},"viewport":"width=device-width, initial-scale=1"};
 
 const appRootTag = "div";
 

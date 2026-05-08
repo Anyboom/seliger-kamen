@@ -2,13 +2,13 @@
   import { AppIcon } from "~/shared/ui/app-icon";
   import { AppButton } from "~/shared/ui/app-button";
   import { AppMenu } from "~/shared/ui/app-menu";
-  import { onMounted, ref, useTemplateRef } from "vue";
-  import { getGlobals, type Global } from "~/entities/globals";
-  import { getPlaceShops, type PlaceShop } from "~/entities/place-shop";
+  import { computed, useTemplateRef } from "vue";
+  import { getGlobals } from "~/entities/globals";
+  import { getPlaceShops } from "~/entities/place-shop";
   import { cleanPhoneNumber } from "~/shared/lib/clean-phone-number";
   import { useDialog, useToast } from "primevue";
   import { createFeedback, FeedbackForm } from "~/features/feedback-form";
-  import { getMenu, type MenuItem } from "~/entities/menu";
+  import { getMenu } from "~/entities/menu";
 
   interface Props {
     colored?: boolean;
@@ -18,23 +18,15 @@
 
   defineOptions({ inheritAttrs: false });
 
-  const menu = useTemplateRef("appMenu");
+  const menu = useTemplateRef<typeof AppMenu>("appMenu");
 
-  const global = ref<Global | null>(null);
-  const places = ref<PlaceShop[]>([]);
-  const menuItems = ref<MenuItem[]>([]);
+  const { data: menuData } = await getMenu();
+  const { data: globalData } = await getGlobals();
+  const { data: placeShopData } = await getPlaceShops();
 
-  onMounted(async () => {
-    const [globalElements, placesElements, menuElements] = await Promise.all([
-      getGlobals(),
-      getPlaceShops(),
-      getMenu(),
-    ]);
-
-    global.value = globalElements;
-    places.value = placesElements;
-    menuItems.value = menuElements;
-  });
+  const menuItems = computed(() => menuData?.value?.data);
+  const global = computed(() => globalData?.value?.data);
+  const places = computed(() => placeShopData?.value?.data);
 
   const dialogService = useDialog();
   const toastService = useToast();
@@ -133,7 +125,10 @@
         </AppButton>
       </div>
       <div class="app-header__delimiter"></div>
-      <div class="app-header__bottom">
+      <div
+        v-if="menuItems"
+        class="app-header__bottom"
+      >
         <AppMenu
           ref="appMenu"
           :items="menuItems"
