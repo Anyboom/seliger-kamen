@@ -2,6 +2,16 @@
   import { Swiper, SwiperSlide } from "swiper/vue";
   import "swiper/css";
   import AppCard from "@/shared/ui/app-card/AppCard.vue";
+  import type { Block } from "@/pages/dynamic-page";
+
+  interface Props extends Block {
+    item: {
+      title: string;
+      advantages: { title: string; caption: string }[];
+    };
+  }
+
+  defineProps<Props>();
 
   defineOptions({ inheritAttrs: false });
 </script>
@@ -9,7 +19,7 @@
 <template>
   <section class="our-advantages">
     <div class="our-advantages__wrapper">
-      <h2 class="our-advantages__title">Наши преимущества</h2>
+      <h2 class="our-advantages__title">{{ item.title }}</h2>
       <div class="our-advantages__content">
         <swiper
           :slides-per-view="`auto`"
@@ -27,15 +37,12 @@
           }"
         >
           <swiper-slide
-            v-for="index in 8"
+            v-for="(element, index) of item.advantages"
             :key="index"
           >
             <AppCard class="our-advantages__card">
-              <div class="our-advantages__card-title">Бесплатное хранение на производстве</div>
-              <div class="our-advantages__card-caption">
-                Заказали памятник осенью, а устанавливать будете весной? Храним весь зимний сезон без наценок. Не нужно
-                арендовать склад или везти на дачу.
-              </div>
+              <div class="our-advantages__card-title">{{ element.title }}</div>
+              <div class="our-advantages__card-caption">{{ element.caption }}</div>
             </AppCard>
           </swiper-slide>
         </swiper>

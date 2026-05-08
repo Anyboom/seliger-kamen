@@ -1,33 +1,42 @@
 <script setup lang="ts">
+  import type { Block } from "@/pages/dynamic-page";
+  import { getImageFromDirectus } from "@/shared/lib/get-image-from-directus.ts";
+
+  interface Props extends Block {
+    item: {
+      title: string;
+      content: string;
+      background: {
+        id: string;
+        title: string;
+      };
+    };
+  }
+
+  defineProps<Props>();
+
   defineOptions({ inheritAttrs: false });
 </script>
 
 <template>
   <section class="about-us">
     <div class="about-us__wrapper">
-      <div class="about-us__image-wrapper">
+      <div
+        v-if="item.background"
+        class="about-us__image-wrapper"
+      >
         <img
-          src="/images/about_background.png"
-          alt="#"
+          :src="getImageFromDirectus(item.background.id)"
+          :alt="item.background.title"
           class="about-us__image"
         />
       </div>
       <div class="about-us__body">
-        <h2 class="about-us__title">О нас</h2>
-        <div class="about-us__content">
-          <p>
-            Мы — «Селигер Камень». Работаем напрямую с камнем из Урала и Карелии. Сами режем, шлифуем, гравируем.
-            Никаких посредников — только цена производителя.
-          </p>
-          <p>
-            Создаём памятники любой сложности: от строгих бюджетных до эксклюзивных премиум-проектов. Используем
-            алмазную гравировку, фотокерамику, имитацию гравировки. Делаем портреты на стекле.
-          </p>
-          <p>
-            Обустраиваем места захоронений под ключ. В наличии — кресты, ограды, вазы, лампады, венки, столики и
-            скамейки.
-          </p>
-        </div>
+        <h2 class="about-us__title">{{ item.title }}</h2>
+        <div
+          class="about-us__content"
+          v-html="item.content"
+        ></div>
       </div>
     </div>
   </section>

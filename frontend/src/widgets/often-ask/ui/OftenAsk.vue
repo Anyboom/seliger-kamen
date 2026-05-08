@@ -1,5 +1,15 @@
 <script setup lang="ts">
   import { AppAccordion } from "@/shared/ui/app-accordion";
+  import type { Block } from "@/pages/dynamic-page";
+
+  interface Props extends Block {
+    item: {
+      title: string;
+      questions: { question: string; answer: string }[];
+    };
+  }
+
+  defineProps<Props>();
 
   defineOptions({ inheritAttrs: false });
 </script>
@@ -7,14 +17,14 @@
 <template>
   <section class="often-ask">
     <div class="often-ask__wrapper">
-      <h2 class="often-ask__title">Часто задаваемые вопросы</h2>
+      <h2 class="often-ask__title">{{ item.title }}</h2>
       <div class="often-ask__content">
         <AppAccordion
-          v-for="index in 6"
+          v-for="(element, index) of item.questions"
           :key="index"
         >
-          <template #title> Есть ли скидки ? </template>
-          <template #default> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, illo. </template>
+          <template #title> {{ element.question }} </template>
+          <template #default> {{ element.answer }} </template>
         </AppAccordion>
       </div>
     </div>

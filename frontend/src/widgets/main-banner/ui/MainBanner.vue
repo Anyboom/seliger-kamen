@@ -1,17 +1,34 @@
 <script setup lang="ts">
   import { AppHeader } from "@/widgets/app-header";
+  import type { Block } from "@/pages/dynamic-page";
+  import { getImageFromDirectus } from "@/shared/lib/get-image-from-directus.ts";
+
+  interface Props extends Block {
+    item: {
+      title: string;
+      caption: string;
+      background: {
+        id: string;
+      };
+    };
+  }
+
+  defineProps<Props>();
 
   defineOptions({ inheritAttrs: false });
 </script>
 
 <template>
   <div class="app-banner">
-    <div class="app-banner__wrapper">
+    <div
+      class="app-banner__wrapper"
+      :style="{ 'background-image': `url(${getImageFromDirectus(item.background.id)})` }"
+    >
       <AppHeader :colored="false" />
       <div class="app-banner__body">
-        <h1 class="app-banner__title">Селигер Камень</h1>
+        <h1 class="app-banner__title">{{ item.title }}</h1>
         <span class="app-banner__caption">
-          Изготовление памятников, оград, крестов. Гранит Урал и Карелия. Благоустройство. Рассрочка
+          {{ item.caption }}
         </span>
       </div>
     </div>
@@ -28,7 +45,6 @@
 
     &__wrapper {
       border-radius: core.$radius-200;
-      background-image: url("/images/banner_background.png");
       background-repeat: no-repeat;
       background-size: cover;
     }
