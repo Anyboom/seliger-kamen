@@ -3,7 +3,7 @@ FROM node:22-alpine AS build-stage
 WORKDIR /usr/src/app
 
 COPY ./frontend/package*.json ./
-RUN npm ci
+RUN npm i
 
 COPY ./frontend/ ./
 
