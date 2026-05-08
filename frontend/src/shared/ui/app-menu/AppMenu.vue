@@ -108,6 +108,7 @@
         justify-content: center;
         display: flex;
         flex-direction: column;
+        z-index: 900;
 
         #{$this}__link {
           color: semantic.$text-default;
