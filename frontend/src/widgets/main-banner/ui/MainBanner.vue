@@ -50,7 +50,7 @@
     }
 
     &__body {
-      padding: core.$spacing-5000 0;
+      padding: core.$spacing-5000 core.$spacing-400;
       color: semantic.$text-default-negative;
       display: flex;
       flex-direction: column;
@@ -61,6 +61,7 @@
 
     &__title {
       text-transform: uppercase;
+      text-align: center;
 
       @include mixins.apply-text("display-1");
     }

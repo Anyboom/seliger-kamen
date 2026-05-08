@@ -2,11 +2,11 @@
   import { AppIcon } from "@/shared/ui/app-icon";
   import { AppButton } from "@/shared/ui/app-button";
   import { ref } from "vue";
+  import { useRoute } from "vue-router";
 
   type MenuItem = {
-    label: string;
+    title: string;
     href: string;
-    active?: boolean;
   };
 
   interface Props {
@@ -20,6 +20,31 @@
   }
 
   defineProps<Props>();
+
+  const route = useRoute();
+
+  function isActiveItem(item: MenuItem): boolean {
+    let normalizedCurrentPath = route.path;
+    let itemPath = item.href;
+
+    if (normalizedCurrentPath !== "/") {
+      normalizedCurrentPath = normalizedCurrentPath.replace(/\/$/, "");
+    }
+
+    normalizedCurrentPath = normalizedCurrentPath.toLowerCase();
+
+    if (itemPath !== "/") {
+      itemPath = itemPath.replace(/\/$/, "");
+    }
+
+    itemPath = itemPath.toLowerCase();
+
+    if (itemPath === "/") {
+      return normalizedCurrentPath === "/" || normalizedCurrentPath === "";
+    }
+
+    return normalizedCurrentPath === itemPath || normalizedCurrentPath.startsWith(itemPath + "/");
+  }
 
   defineExpose({ isShowMobileMenu });
 </script>
@@ -37,10 +62,10 @@
       >
         <a
           class="app-menu__link"
-          :class="{ 'app-menu__link_active': item.active }"
+          :class="{ 'app-menu__link_active': isActiveItem(item) }"
           :href="item.href"
         >
-          {{ item.label }}
+          {{ item.title }}
         </a>
       </li>
     </ul>

@@ -8,6 +8,7 @@
   import { cleanPhoneNumber } from "@/shared/lib/clean-phone-number.ts";
   import { useDialog, useToast } from "primevue";
   import { createFeedback, FeedbackForm } from "@/features/feedback-form";
+  import { getMenu, type MenuItem } from "@/entities/menu";
 
   interface Props {
     colored?: boolean;
@@ -21,10 +22,18 @@
 
   const global = ref<Global | null>(null);
   const places = ref<PlaceShop[]>([]);
+  const menuItems = ref<MenuItem[]>([]);
 
   onMounted(async () => {
-    global.value = await getGlobals();
-    places.value = await getPlaceShops();
+    const [globalElements, placesElements, menuElements] = await Promise.all([
+      getGlobals(),
+      getPlaceShops(),
+      getMenu(),
+    ]);
+
+    global.value = globalElements;
+    places.value = placesElements;
+    menuItems.value = menuElements;
   });
 
   const dialogService = useDialog();
@@ -53,26 +62,6 @@
       },
     });
   }
-
-  const items = ref([
-    {
-      label: "Главная",
-      href: "#",
-      active: true,
-    },
-    {
-      label: "Наши работы",
-      href: "#",
-    },
-    {
-      label: "Наши услуги",
-      href: "#",
-    },
-    {
-      label: "Контакты",
-      href: "#",
-    },
-  ]);
 </script>
 
 <template>
@@ -147,7 +136,7 @@
       <div class="app-header__bottom">
         <AppMenu
           ref="appMenu"
-          :items="items"
+          :items="menuItems"
         />
       </div>
     </div>

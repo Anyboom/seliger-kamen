@@ -46,6 +46,7 @@
     &__buttons {
       margin-bottom: core.$spacing-400;
       display: flex;
+      flex-wrap: wrap;
       gap: core.$spacing-200;
     }
   }
