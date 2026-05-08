@@ -1,51 +1,63 @@
 <script setup lang="ts">
-  import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
+  import { LMap, LMarker, LTileLayer } from "@vue-leaflet/vue-leaflet";
   import "leaflet/dist/leaflet.css";
   import AppCard from "@/shared/ui/app-card/AppCard.vue";
   import { AppButton } from "@/shared/ui/app-button";
   import { AppIcon } from "@/shared/ui/app-icon";
+  import { getPlaceShops, type PlaceShop } from "@/entities/place-shop";
+  import { onMounted, ref } from "vue";
+  import type { Block } from "@/pages/dynamic-page";
+
+  interface Props extends Block {
+    item: {
+      title: string;
+    };
+  }
+
+  defineProps<Props>();
 
   defineOptions({ inheritAttrs: false });
+
+  const places = ref<PlaceShop[]>([]);
+
+  onMounted(async () => {
+    places.value = await getPlaceShops();
+  });
 </script>
 
 <template>
   <section class="our-contacts">
     <div class="our-contacts__wrapper">
       <div class="our-contacts__body">
-        <h2 class="our-contacts__title">Наши контакты</h2>
+        <h2 class="our-contacts__title">{{ item.title }}</h2>
         <div class="our-contacts__cards">
           <AppCard
-            v-for="index in 2"
+            v-for="(element, index) in places"
             :key="index"
             class="our-contacts__card"
           >
             <div class="our-contacts__card-content">
               <span class="our-contacts__card-content-title">Телефон:</span>
-              <span class="our-contacts__card-content-value">8 960 716 53 53</span>
+              <span class="our-contacts__card-content-value">{{ element.phone }}</span>
             </div>
             <div class="our-contacts__card-content">
               <span class="our-contacts__card-content-title">Адрес:</span>
-              <span class="our-contacts__card-content-value">г. Осташков, Володарского. 63</span>
+              <span class="our-contacts__card-content-value">{{ element.address }}</span>
             </div>
-            <div class="our-contacts__socials">
+            <div
+              v-if="element.socials"
+              class="our-contacts__socials"
+            >
               <AppButton
+                v-for="(icon, key) of element.socials"
+                :key="key"
                 rounded
                 icon-only
                 aria-label="Ссылка на вк"
+                :href="icon.href"
               >
                 <AppIcon
-                  name="social-vk"
-                  width="24"
-                  height="24"
-                />
-              </AppButton>
-              <AppButton
-                rounded
-                icon-only
-                aria-label="Ссылка на вк"
-              >
-                <AppIcon
-                  name="social-vk"
+                  :name="icon.icon"
                   width="24"
                   height="24"
                 />
@@ -57,6 +69,7 @@
       <div class="our-contacts__map">
         <l-map
           ref="map"
+          :options="{}"
           :zoom="9"
           :center="[57.014571, 33.015289]"
         >
@@ -64,6 +77,11 @@
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"
             name="OpenStreetMap"
+          />
+          <l-marker
+            v-for="(element, index) of places"
+            :key="index"
+            :lat-lng="[element.latitude, element.longitude]"
           />
         </l-map>
       </div>
