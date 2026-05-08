@@ -1,4 +1,3 @@
-version: "3.7"
 name: "seliger-kamen"
 
 services:
@@ -15,7 +14,7 @@ services:
       - seliger-kamen
   seliger-kamen-directus:
     container_name: seliger-kamen-directus
-    image: directus/directus:11.10.0
+    image: directus/directus:11.17.4
     ports:
       - "8055:8055"
     volumes:

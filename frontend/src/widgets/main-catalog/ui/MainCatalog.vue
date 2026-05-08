@@ -4,6 +4,16 @@
   import { AppTabs } from "@/shared/ui/app-tabs";
   import { type Category, getAllCategories } from "@/entities/category";
   import { onMounted, ref } from "vue";
+  import type { Block } from "@/pages/dynamic-page";
+
+  interface Props extends Block {
+    item: {
+      title: string;
+      button_href: string;
+    };
+  }
+
+  defineProps<Props>();
 
   defineOptions({ inheritAttrs: false });
 
@@ -17,7 +27,7 @@
 <template>
   <section class="main-catalog">
     <div class="main-catalog__wrapper">
-      <h2 class="main-catalog__title">Каталог</h2>
+      <h2 class="main-catalog__title">{{ item.title }}</h2>
       <AppTabs :tabs-data="categories">
         <template #default="{ activeIndex }">
           <div
@@ -43,7 +53,7 @@
         </template>
       </AppTabs>
       <div class="main-catalog__actions">
-        <AppButton>Подробнее</AppButton>
+        <AppButton :href="item.button_href">Подробнее</AppButton>
       </div>
     </div>
   </section>

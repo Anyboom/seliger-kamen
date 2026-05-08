@@ -17,7 +17,7 @@
   const works = ref<Work[]>([]);
 
   onMounted(async () => {
-    works.value = await getWorks();
+    works.value = await getWorks({ limit: 8 });
   });
 
   defineOptions({ inheritAttrs: false });

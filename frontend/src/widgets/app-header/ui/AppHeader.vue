@@ -2,7 +2,10 @@
   import { AppIcon } from "@/shared/ui/app-icon";
   import { AppButton } from "@/shared/ui/app-button";
   import { AppMenu } from "@/shared/ui/app-menu";
-  import { ref, useTemplateRef } from "vue";
+  import { onMounted, ref, useTemplateRef } from "vue";
+  import { getGlobals, type Global } from "@/entities/globals";
+  import { getPlaceShops, type PlaceShop } from "@/entities/place-shop";
+  import { cleanPhoneNumber } from "@/shared/lib/clean-phone-number.ts";
 
   interface Props {
     colored?: boolean;
@@ -13,6 +16,14 @@
   defineOptions({ inheritAttrs: false });
 
   const menu = useTemplateRef("appMenu");
+
+  const global = ref<Global | null>(null);
+  const places = ref<PlaceShop[]>([]);
+
+  onMounted(async () => {
+    global.value = await getGlobals();
+    places.value = await getPlaceShops();
+  });
 
   const items = ref([
     {
@@ -57,16 +68,19 @@
             height="46px"
           />
         </a>
-        <div class="app-header__contacts">
-          <span>г. Осташков, Володарского. 63</span>
-          <a href="tel:89607165353">8 960 716 53 53</a>
+        <div
+          v-for="(element, index) of places"
+          :key="index"
+          class="app-header__contacts"
+        >
+          <span>{{ element.address }}</span>
+          <a :href="`tel:${cleanPhoneNumber(element.phone)}`">{{ element.phone }}</a>
         </div>
-        <div class="app-header__contacts">
-          <span>г. Пено, Тарасова. 2</span>
-          <a href="tel:89105391969">8 910 539 19 69</a>
-        </div>
-        <div class="app-header__contacts">
-          <a href="mailto:danilka.volkov.02@mail.ru">danilka.volkov.02@mail.ru</a>
+        <div
+          v-if="global?.email"
+          class="app-header__contacts"
+        >
+          <a :href="`mailto:${global.email}`">{{ global.email }}</a>
         </div>
         <div class="app-header__socials">
           <AppButton

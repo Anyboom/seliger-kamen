@@ -7,6 +7,7 @@
   import { getPlaceShops, type PlaceShop } from "@/entities/place-shop";
   import { onMounted, ref } from "vue";
   import type { Block } from "@/pages/dynamic-page";
+  import { cleanPhoneNumber } from "@/shared/lib/clean-phone-number";
 
   interface Props extends Block {
     item: {
@@ -38,7 +39,12 @@
           >
             <div class="our-contacts__card-content">
               <span class="our-contacts__card-content-title">Телефон:</span>
-              <span class="our-contacts__card-content-value">{{ element.phone }}</span>
+              <a
+                :href="`tel:${cleanPhoneNumber(element.phone)}`"
+                class="our-contacts__card-content-value"
+              >
+                {{ element.phone }}
+              </a>
             </div>
             <div class="our-contacts__card-content">
               <span class="our-contacts__card-content-title">Адрес:</span>
@@ -153,13 +159,21 @@
       display: flex;
       flex-direction: column;
       gap: core.$spacing-300;
-      color: semantic.$text-default;
 
       &-title {
+        color: semantic.$text-default;
         @include mixins.apply-text("body-1-strong");
       }
 
       &-value {
+        color: semantic.$text-default;
+
+        &[href] {
+          @include mixins.hover {
+            text-decoration: underline;
+          }
+        }
+
         @include mixins.apply-text("body-2");
       }
     }
