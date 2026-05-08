@@ -15,6 +15,6 @@ WORKDIR /usr/src/app
 
 COPY --from=build-stage /usr/src/app/.output /usr/src/app
 
-EXPOSE 8080
+EXPOSE 3000
 
 CMD ["node", "./server/index.mjs"]

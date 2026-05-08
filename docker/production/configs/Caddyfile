@@ -1,5 +1,5 @@
 seliger-kamen.ru {
-    reverse_proxy seliger-kamen-frontend:8080
+    reverse_proxy seliger-kamen-frontend:3000
 }
 
 directus.seliger-kamen.ru {
