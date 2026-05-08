@@ -7,16 +7,12 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ../../frontend:/usr/src/app
-    ports:
-      - "3000:3000"
     command: [ "sh", "-c", "npm install && npm run dev" ]
     networks:
       - seliger-kamen
   seliger-kamen-directus:
     container_name: seliger-kamen-directus
     image: directus/directus:11.17.4
-    ports:
-      - "8055:8055"
     volumes:
       - ../../directus/database:/directus/database
       - ../../directus/uploads:/directus/uploads

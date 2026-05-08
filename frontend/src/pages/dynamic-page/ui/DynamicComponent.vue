@@ -1,9 +1,7 @@
 <script setup lang="ts">
-  import type { Block } from "@/pages/dynamic-page/model/block.interface";
-  import { BlocksRepository } from "@/pages/dynamic-page/model/blocks.repository";
-  import { type Component, onMounted, shallowRef } from "vue";
-
-  defineOptions({ inheritAttrs: false });
+  import type { Block } from "~/pages/dynamic-page/model/block.interface";
+  import { computed } from "#imports";
+  import { BlocksRepository } from "~/pages/dynamic-page/model/blocks.repository";
 
   interface Props {
     block: Block;
@@ -11,18 +9,15 @@
 
   const { block } = defineProps<Props>();
 
-  const currentComponent = shallowRef<Component>();
+  const instanceBlock = computed(() => BlocksRepository.get(block.collection));
 
-  onMounted(async () => {
-    const currentBlock = BlocksRepository.get(block.collection);
-    const componentModule = currentBlock.component();
-    currentComponent.value = componentModule instanceof Promise ? (await componentModule).default : componentModule;
-  });
+  const componentModule = instanceBlock.value.component();
+  const component = componentModule instanceof Promise ? (await componentModule).default : componentModule;
 </script>
 
 <template>
   <component
-    :is="currentComponent"
+    :is="component"
     v-bind="block"
   />
 </template>

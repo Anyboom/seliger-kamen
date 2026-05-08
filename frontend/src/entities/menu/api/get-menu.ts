@@ -1,8 +1,8 @@
-import { ofetch } from "ofetch";
-import type { MenuItem } from "@/entities/menu/model/menu-item.ts";
+import type { MenuItem } from "~/entities/menu/model/menu-item";
+import { pathDirectus } from "~/shared/api/path-directus";
 
 export async function getMenu(): Promise<MenuItem[]> {
-  const { data } = await ofetch(`${import.meta.env.VITE_DIRECTUS}/items/menu`);
+  const { data } = await $fetch<any>(`${pathDirectus()}/items/menu`);
 
   return data.map((item: any) => ({
     id: item.id,

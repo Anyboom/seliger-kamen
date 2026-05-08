@@ -1,13 +1,12 @@
 <script setup lang="ts">
-  import { LMap, LMarker, LTileLayer } from "@vue-leaflet/vue-leaflet";
   import "leaflet/dist/leaflet.css";
-  import AppCard from "@/shared/ui/app-card/AppCard.vue";
-  import { AppButton } from "@/shared/ui/app-button";
-  import { AppIcon } from "@/shared/ui/app-icon";
-  import { getPlaceShops, type PlaceShop } from "@/entities/place-shop";
+  import AppCard from "~/shared/ui/app-card/AppCard.vue";
+  import { AppButton } from "~/shared/ui/app-button";
+  import { AppIcon } from "~/shared/ui/app-icon";
+  import { getPlaceShops, type PlaceShop } from "~/entities/place-shop";
   import { onMounted, ref } from "vue";
-  import type { Block } from "@/pages/dynamic-page";
-  import { cleanPhoneNumber } from "@/shared/lib/clean-phone-number";
+  import type { Block } from "~/pages/dynamic-page";
+  import { cleanPhoneNumber } from "~/shared/lib/clean-phone-number";
 
   interface Props extends Block {
     item: {
@@ -87,7 +86,7 @@
           <l-marker
             v-for="(element, index) of places"
             :key="index"
-            :lat-lng="[element.latitude, element.longitude]"
+            :lat-lng="[Number(element.latitude), Number(element.longitude)]"
           />
         </l-map>
       </div>
@@ -96,9 +95,9 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/semantic";
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .leaflet-control-attribution {
     display: none;

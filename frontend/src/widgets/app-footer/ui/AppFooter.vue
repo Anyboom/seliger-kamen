@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { AppIcon } from "@/shared/ui/app-icon";
+  import { AppIcon } from "~/shared/ui/app-icon";
 
   defineOptions({ inheritAttrs: false });
 </script>
@@ -23,9 +23,9 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/semantic";
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-footer {
     @include mixins.container;

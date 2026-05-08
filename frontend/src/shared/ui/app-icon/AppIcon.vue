@@ -9,7 +9,7 @@
 
   const { name } = defineProps<Props>();
 
-  const spriteHref = computed(() => `${import.meta.env.BASE_URL}sprite.svg#${name}`);
+  const spriteHref = computed(() => `sprite.svg#${name}`);
 </script>
 
 <template>

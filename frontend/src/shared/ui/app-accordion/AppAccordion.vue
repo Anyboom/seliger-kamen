@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { AppIcon } from "@/shared/ui/app-icon";
+  import { AppIcon } from "~/shared/ui/app-icon";
 </script>
 
 <template>
@@ -22,9 +22,9 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/semantic";
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-accordion {
     &[open] > &__summary {

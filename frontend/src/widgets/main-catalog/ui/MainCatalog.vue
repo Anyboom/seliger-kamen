@@ -1,10 +1,10 @@
 <script setup lang="ts">
-  import { AppButton } from "@/shared/ui/app-button";
-  import { ProductCard } from "@/entities/product";
-  import { AppTabs } from "@/shared/ui/app-tabs";
-  import { type Category, getAllCategories } from "@/entities/category";
+  import { AppButton } from "~/shared/ui/app-button";
+  import { ProductCard } from "~/entities/product";
+  import { AppTabs } from "~/shared/ui/app-tabs";
+  import { type Category, getAllCategories } from "~/entities/category";
   import { onMounted, ref } from "vue";
-  import type { Block } from "@/pages/dynamic-page";
+  import type { Block } from "~/pages/dynamic-page";
 
   interface Props extends Block {
     item: {
@@ -60,9 +60,9 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/semantic";
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .main-catalog {
     padding: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-800}) 0;

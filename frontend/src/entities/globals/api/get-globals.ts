@@ -1,7 +1,8 @@
-import { ofetch } from "ofetch";
+import { useRuntimeConfig } from "#app";
+import { pathDirectus } from "~/shared/api/path-directus";
 
 export async function getGlobals() {
-  const { data } = await ofetch(`${import.meta.env.VITE_DIRECTUS}/items/globals`);
+  const { data } = await $fetch<any>(`${pathDirectus()}/items/globals`);
 
   return {
     id: data.id,

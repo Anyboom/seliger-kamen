@@ -1,15 +1,15 @@
-import type { BaseBlock } from "@/pages/dynamic-page/blocks/base.block.ts";
-import { AboutUsBlock } from "@/pages/dynamic-page/blocks/about-us.block.ts";
-import { NotLoadedBlock } from "@/pages/dynamic-page/blocks/not-loaded.block.ts";
-import { MainBannerBlock } from "@/pages/dynamic-page/blocks/main-banner.block.ts";
-import { OurAdvantagesBlock } from "@/pages/dynamic-page/blocks/our-advantages.block.ts";
-import { OftenAskBlock } from "@/pages/dynamic-page/blocks/often-ask.block.ts";
-import { OurContactsBlock } from "@/pages/dynamic-page/blocks/our-contacts.block.ts";
-import { AppFooterBlock } from "@/pages/dynamic-page/blocks/app-footer.block.ts";
-import { OurWorksBlock } from "@/pages/dynamic-page/blocks/our-works.block.ts";
-import { MainCatalogBlock } from "@/pages/dynamic-page/blocks/main-catalog.block.ts";
-import { FullCatalogBlock } from "@/pages/dynamic-page/blocks/full-catalog.block.ts";
-import { AppHeaderBlock } from "@/pages/dynamic-page/blocks/app-header.block.ts";
+import type { BaseBlock } from "~/pages/dynamic-page/blocks/base.block";
+import { AboutUsBlock } from "~/pages/dynamic-page/blocks/about-us.block";
+import { NotLoadedBlock } from "~/pages/dynamic-page/blocks/not-loaded.block";
+import { MainBannerBlock } from "~/pages/dynamic-page/blocks/main-banner.block";
+import { OurAdvantagesBlock } from "~/pages/dynamic-page/blocks/our-advantages.block";
+import { OftenAskBlock } from "~/pages/dynamic-page/blocks/often-ask.block";
+import { OurContactsBlock } from "~/pages/dynamic-page/blocks/our-contacts.block";
+import { AppFooterBlock } from "~/pages/dynamic-page/blocks/app-footer.block";
+import { OurWorksBlock } from "~/pages/dynamic-page/blocks/our-works.block";
+import { MainCatalogBlock } from "~/pages/dynamic-page/blocks/main-catalog.block";
+import { FullCatalogBlock } from "~/pages/dynamic-page/blocks/full-catalog.block";
+import { AppHeaderBlock } from "~/pages/dynamic-page/blocks/app-header.block";
 
 export class BlocksRepository {
   private static readonly blocks: Map<string, BaseBlock> = new Map<string, BaseBlock>([

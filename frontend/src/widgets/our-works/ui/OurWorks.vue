@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  import { AppButton } from "@/shared/ui/app-button";
-  import { getWorks, type Work, WorkCard } from "@/entities/work";
-  import type { Block } from "@/pages/dynamic-page";
+  import { AppButton } from "~/shared/ui/app-button";
+  import { getWorks, type Work, WorkCard } from "~/entities/work";
+  import type { Block } from "~/pages/dynamic-page";
   import { onMounted, ref } from "vue";
-  import { getImageFromDirectus } from "@/shared/lib/get-image-from-directus.ts";
+  import { getImageFromDirectus } from "~/shared/lib/get-image-from-directus";
 
   interface Props extends Block {
     item: {
@@ -44,9 +44,9 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/semantic";
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .our-works {
     padding: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-800}) 0;

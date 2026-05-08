@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import { AppButton } from "@/shared/ui/app-button";
-  import { AppInput } from "@/shared/ui/app-input";
-  import { AppTextarea } from "@/shared/ui/app-textarea";
+  import { AppButton } from "~/shared/ui/app-button";
+  import { AppInput } from "~/shared/ui/app-input";
+  import { AppTextarea } from "~/shared/ui/app-textarea";
   import Message from "primevue/message";
   import { Form, FormField, type FormSubmitEvent } from "@primevue/forms";
   import { valibotResolver } from "@primevue/forms/resolvers/valibot";
@@ -111,9 +111,9 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
-  @use "@/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
 
   .feedback-form {
     display: flex;

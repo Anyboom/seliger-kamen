@@ -1,7 +1,7 @@
-import { ofetch } from "ofetch";
+import { pathDirectus } from "~/shared/api/path-directus";
 
 export async function getPlaceShops() {
-  const { data } = await ofetch(`${import.meta.env.VITE_DIRECTUS}/items/place_shop`);
+  const { data } = await $fetch<any>(`${pathDirectus()}/items/place_shop`);
 
   return data.map((place: any) => ({
     id: place.id,
