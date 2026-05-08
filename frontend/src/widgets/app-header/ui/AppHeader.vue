@@ -6,6 +6,8 @@
   import { getGlobals, type Global } from "@/entities/globals";
   import { getPlaceShops, type PlaceShop } from "@/entities/place-shop";
   import { cleanPhoneNumber } from "@/shared/lib/clean-phone-number.ts";
+  import { useDialog, useToast } from "primevue";
+  import { createFeedback, FeedbackForm } from "@/features/feedback-form";
 
   interface Props {
     colored?: boolean;
@@ -24,6 +26,33 @@
     global.value = await getGlobals();
     places.value = await getPlaceShops();
   });
+
+  const dialogService = useDialog();
+  const toastService = useToast();
+
+  function showFeedbackForm() {
+    dialogService.open(FeedbackForm, {
+      emits: {
+        onSubmit: async (values: any) => {
+          await createFeedback(values.name, values.phone, values.comment);
+          toastService.add({
+            severity: "success",
+            summary: "Успешно",
+            detail: "Заявка отправлена, ожидайте звонка.",
+            life: 2000,
+          });
+        },
+      },
+      props: {
+        draggable: false,
+        style: {
+          width: "25vw",
+        },
+        header: "Обратная связь",
+        modal: true,
+      },
+    });
+  }
 
   const items = ref([
     {
@@ -107,7 +136,12 @@
           </AppButton>
         </div>
 
-        <AppButton class="app-header__form-button">Заказать звонок</AppButton>
+        <AppButton
+          class="app-header__form-button"
+          @click="showFeedbackForm"
+        >
+          Заказать звонок
+        </AppButton>
       </div>
       <div class="app-header__delimiter"></div>
       <div class="app-header__bottom">
