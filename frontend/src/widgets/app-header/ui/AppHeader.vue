@@ -1,14 +1,14 @@
 <script setup lang="ts">
-  import { AppIcon } from "@/shared/ui/app-icon";
-  import { AppButton } from "@/shared/ui/app-button";
-  import { AppMenu } from "@/shared/ui/app-menu";
+  import { AppIcon } from "~/shared/ui/app-icon";
+  import { AppButton } from "~/shared/ui/app-button";
+  import { AppMenu } from "~/shared/ui/app-menu";
   import { onMounted, ref, useTemplateRef } from "vue";
-  import { getGlobals, type Global } from "@/entities/globals";
-  import { getPlaceShops, type PlaceShop } from "@/entities/place-shop";
-  import { cleanPhoneNumber } from "@/shared/lib/clean-phone-number.ts";
+  import { getGlobals, type Global } from "~/entities/globals";
+  import { getPlaceShops, type PlaceShop } from "~/entities/place-shop";
+  import { cleanPhoneNumber } from "~/shared/lib/clean-phone-number";
   import { useDialog, useToast } from "primevue";
-  import { createFeedback, FeedbackForm } from "@/features/feedback-form";
-  import { getMenu, type MenuItem } from "@/entities/menu";
+  import { createFeedback, FeedbackForm } from "~/features/feedback-form";
+  import { getMenu, type MenuItem } from "~/entities/menu";
 
   interface Props {
     colored?: boolean;
@@ -144,9 +144,9 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/semantic";
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-header {
     $this: &;

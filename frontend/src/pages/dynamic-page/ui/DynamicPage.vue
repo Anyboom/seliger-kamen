@@ -1,35 +1,38 @@
 <script setup lang="ts">
-  import DynamicComponent from "@/pages/dynamic-page/ui/DynamicComponent.vue";
-  import type { Page } from "@/pages/dynamic-page/model/page.interface.ts";
-  import { useRoute } from "vue-router";
-  import { useHead } from "@unhead/vue";
-  import { onMounted } from "vue";
-  import { Error } from "@/widgets/error";
-
-  defineOptions({ inheritAttrs: false });
+  import DynamicComponent from "~/pages/dynamic-page/ui/DynamicComponent.vue";
+  import { createError, useHead, useRoute } from "#app";
+  import type { Page } from "~/pages/dynamic-page/model/page.interface";
 
   const route = useRoute();
 
   const currentPage: Page | undefined = route?.["meta"]?.["currentPage"] as Page | undefined;
 
-  onMounted(() => {
-    if (currentPage) {
-      useHead({
-        title: currentPage.title,
-        meta: [{ name: "description", content: currentPage.description }],
-      });
-    }
+  if (currentPage == undefined) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: "Не получилось получить страницу",
+    });
+  }
+
+  if (currentPage.matched) {
+    console.log(`Загружена страница ${currentPage.title} по адресу - ${currentPage.slug}`);
+  } else {
+    throw createError({
+      statusCode: 404,
+      statusMessage: "Страница не найдена",
+    });
+  }
+
+  useHead({
+    title: currentPage.title,
+    meta: [{ name: "description", content: currentPage.description }],
   });
 </script>
 
 <template>
-  <template v-if="currentPage?.matched">
-    <DynamicComponent
-      v-for="(block, index) of currentPage?.blocks"
-      :key="index"
-      :block="block"
-    />
-  </template>
-
-  <Error v-else />
+  <DynamicComponent
+    v-for="(block, index) of currentPage?.blocks"
+    :key="index"
+    :block="block"
+  />
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { ref } from "vue";
-  import { AppButton } from "@/shared/ui/app-button/index.ts";
+  import { AppButton } from "~/shared/ui/app-button/index";
 
   interface Props {
     tabsData: { title: string }[];
@@ -38,9 +38,9 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/semantic";
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-tabs {
     &__buttons {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { AppIcon } from "@/shared/ui/app-icon";
-  import { AppButton } from "@/shared/ui/app-button";
+  import { AppIcon } from "~/shared/ui/app-icon";
+  import { AppButton } from "~/shared/ui/app-button";
   import { ref } from "vue";
   import { useRoute } from "vue-router";
 
@@ -85,9 +85,9 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/semantic";
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-menu {
     $this: &;

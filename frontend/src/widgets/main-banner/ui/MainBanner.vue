@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import { AppHeader } from "@/widgets/app-header";
-  import type { Block } from "@/pages/dynamic-page";
-  import { getImageFromDirectus } from "@/shared/lib/get-image-from-directus.ts";
+  import { AppHeader } from "~/widgets/app-header";
+  import type { Block } from "~/pages/dynamic-page";
+  import { getImageFromDirectus } from "~/shared/lib/get-image-from-directus";
 
   interface Props extends Block {
     item: {
@@ -36,9 +36,9 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/semantic";
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-banner {
     @include mixins.container;

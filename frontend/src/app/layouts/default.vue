@@ -6,7 +6,7 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/core";
 
   .main-layout {
     height: 100%;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { AppButton } from "@/shared/ui/app-button";
+  import { AppButton } from "~/shared/ui/app-button";
 </script>
 
 <template>
@@ -21,9 +21,9 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
-  @use "@/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
 
   .error {
     max-width: 500px;

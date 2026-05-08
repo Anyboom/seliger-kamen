@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { Swiper, SwiperSlide } from "swiper/vue";
   import "swiper/css";
-  import AppCard from "@/shared/ui/app-card/AppCard.vue";
-  import type { Block } from "@/pages/dynamic-page";
+  import AppCard from "~/shared/ui/app-card/AppCard.vue";
+  import type { Block } from "~/pages/dynamic-page";
 
   interface Props extends Block {
     item: {
@@ -52,9 +52,9 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/semantic";
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .swiper-slide {
     width: fit-content !important;

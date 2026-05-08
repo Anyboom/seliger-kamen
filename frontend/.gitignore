@@ -14,6 +14,8 @@ node_modules
 dist
 dist-ssr
 *.local
+.nuxt
+.output
 
 # Editor directories and files
 .vscode/*

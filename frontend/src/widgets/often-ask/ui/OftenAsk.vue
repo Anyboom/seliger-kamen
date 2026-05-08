@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { AppAccordion } from "@/shared/ui/app-accordion";
-  import type { Block } from "@/pages/dynamic-page";
+  import { AppAccordion } from "~/shared/ui/app-accordion";
+  import type { Block } from "~/pages/dynamic-page";
 
   interface Props extends Block {
     item: {
@@ -32,9 +32,9 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/semantic";
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .often-ask {
     padding: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-800}) 0;

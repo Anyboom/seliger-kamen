@@ -1,6 +1,6 @@
-import { BaseBlock } from "@/pages/dynamic-page/blocks/base.block.ts";
+import { BaseBlock } from "~/pages/dynamic-page/blocks/base.block";
 
 export class FullCatalogBlock extends BaseBlock {
   public static override readonly name: string = "full_catalog";
-  public component = () => import("@/widgets/full-catalog/ui/FullCatalog.vue");
+  public component = () => import("~/widgets/full-catalog/ui/FullCatalog.vue");
 }

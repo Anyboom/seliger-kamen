@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from "vue";
-  import { AppIcon } from "@/shared/ui/app-icon";
+  import { AppIcon } from "~/shared/ui/app-icon";
 
   interface Props {
     currentPage: number;
@@ -140,9 +140,9 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
-  @use "@/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
 
   .app-paginator {
     margin: core.$spacing-400 0;

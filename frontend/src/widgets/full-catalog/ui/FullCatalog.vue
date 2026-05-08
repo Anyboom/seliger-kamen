@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import { ProductCard } from "@/entities/product";
-  import { AppTabs } from "@/shared/ui/app-tabs";
-  import { AppPaginator } from "@/shared/ui/app-paginator";
+  import { ProductCard } from "~/entities/product";
+  import { AppTabs } from "~/shared/ui/app-tabs";
+  import { AppPaginator } from "~/shared/ui/app-paginator";
 
   defineOptions({ inheritAttrs: false });
 
@@ -47,9 +47,9 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/semantic";
-  @use "@/shared/assets/styles/mixins";
-  @use "@/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .full-catalog {
     padding: core.$spacing-800 0;
