@@ -9,8 +9,12 @@ COPY ./frontend/ ./
 
 RUN npm run build
 
-FROM nginx:stable-alpine AS production-stage
+FROM node:22-alpine AS production-stage
+
 WORKDIR /usr/src/app
 
-COPY ./docker/production/configs/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build-stage /usr/src/app/dist /usr/src/app
+COPY --from=build-stage /usr/src/app/.output /usr/src/app
+
+EXPOSE 8080
+
+CMD ["node", "./server/index.mjs"]
