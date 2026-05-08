@@ -1,6 +1,24 @@
 <script setup lang="ts">
   import { AppButton } from "@/shared/ui/app-button";
-  import { WorkCard } from "@/entities/work";
+  import { getWorks, type Work, WorkCard } from "@/entities/work";
+  import type { Block } from "@/pages/dynamic-page";
+  import { onMounted, ref } from "vue";
+  import { getImageFromDirectus } from "@/shared/lib/get-image-from-directus.ts";
+
+  interface Props extends Block {
+    item: {
+      title: string;
+      button_href: string;
+    };
+  }
+
+  defineProps<Props>();
+
+  const works = ref<Work[]>([]);
+
+  onMounted(async () => {
+    works.value = await getWorks();
+  });
 
   defineOptions({ inheritAttrs: false });
 </script>
@@ -9,13 +27,15 @@
   <section class="our-works">
     <div class="our-works__wrapper">
       <div class="our-works__header">
-        <h2 class="our-works__title">Наши работы</h2>
-        <AppButton>Подробнее</AppButton>
+        <h2 class="our-works__title">{{ item.title }}</h2>
+        <AppButton :href="item.button_href">Подробнее</AppButton>
       </div>
       <div class="our-works__body">
         <WorkCard
-          v-for="index in 8"
+          v-for="(element, index) of works"
           :key="index"
+          :image-url="getImageFromDirectus(element.image)"
+          :image-name="element.title"
           class="our-works__item"
         />
       </div>

@@ -2,17 +2,23 @@
   import { AppButton } from "@/shared/ui/app-button";
   import { ProductCard } from "@/entities/product";
   import { AppTabs } from "@/shared/ui/app-tabs";
+  import { type Category, getAllCategories } from "@/entities/category";
+  import { onMounted, ref } from "vue";
 
   defineOptions({ inheritAttrs: false });
 
-  const tabs = [{ title: "Вкладка 1" }, { title: "Вкладка 2" }, { title: "Вкладка 3" }];
+  const categories = ref<Category[]>([]);
+
+  onMounted(async () => {
+    categories.value = await getAllCategories();
+  });
 </script>
 
 <template>
   <section class="main-catalog">
     <div class="main-catalog__wrapper">
       <h2 class="main-catalog__title">Каталог</h2>
-      <AppTabs :tabs-data="tabs">
+      <AppTabs :tabs-data="categories">
         <template #default="{ activeIndex }">
           <div
             v-if="activeIndex == 0"

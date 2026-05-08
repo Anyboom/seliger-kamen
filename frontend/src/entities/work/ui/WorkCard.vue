@@ -1,12 +1,19 @@
 <script setup lang="ts">
   import Image from "primevue/image";
+
+  interface Props {
+    imageUrl: string;
+    imageName: string;
+  }
+
+  defineProps<Props>();
 </script>
 
 <template>
   <div class="work-card">
     <Image
-      src="/images/about_background.png"
-      alt="Image"
+      :src="imageUrl"
+      :alt="imageName"
       class="work-card__image-wrapper"
       image-class="work-card__image"
       preview
