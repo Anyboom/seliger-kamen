@@ -10,6 +10,7 @@ import { OurWorksBlock } from "~/pages/dynamic-page/blocks/our-works.block";
 import { MainCatalogBlock } from "~/pages/dynamic-page/blocks/main-catalog.block";
 import { FullCatalogBlock } from "~/pages/dynamic-page/blocks/full-catalog.block";
 import { AppHeaderBlock } from "~/pages/dynamic-page/blocks/app-header.block";
+import { FullOurWorksBlock } from "~/pages/dynamic-page/blocks/full-our-works.block";
 
 export class BlocksRepository {
   private static readonly blocks: Map<string, BaseBlock> = new Map<string, BaseBlock>([
@@ -24,6 +25,7 @@ export class BlocksRepository {
     [MainCatalogBlock.name, new MainCatalogBlock()],
     [FullCatalogBlock.name, new FullCatalogBlock()],
     [AppHeaderBlock.name, new AppHeaderBlock()],
+    [FullOurWorksBlock.name, new FullOurWorksBlock()],
   ]);
 
   static get(name: string): BaseBlock {
