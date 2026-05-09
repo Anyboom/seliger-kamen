@@ -10,6 +10,17 @@
 
   const activeIndex = ref(0);
 
+  type Emits = {
+    changeIndex: [index: number];
+  };
+
+  const emit = defineEmits<Emits>();
+
+  function changeIndex(index: number) {
+    activeIndex.value = index;
+    emit("changeIndex", index);
+  }
+
   function hasActiveIndex(index: number) {
     if (index === activeIndex.value) {
       return "primary";
@@ -26,7 +37,7 @@
         v-for="(tab, index) in tabsData"
         :key="index"
         :variant="hasActiveIndex(index)"
-        @click="activeIndex = index"
+        @click="changeIndex(index)"
       >
         {{ tab.title }}
       </AppButton>

@@ -1,40 +1,41 @@
 <script setup lang="ts">
-  import { ProductCard } from "~/entities/product";
   import { AppTabs } from "~/shared/ui/app-tabs";
-  import { AppPaginator } from "~/shared/ui/app-paginator";
+  import { getAllCategories } from "~/entities/category";
+  import { computed } from "vue";
+  import CatalogByCategory from "~/widgets/full-catalog/ui/CatalogByCategory.vue";
+  import type { Block } from "~/pages/dynamic-page";
+
+  interface Props extends Block {
+    item: {
+      title: string;
+    };
+  }
+
+  defineProps<Props>();
 
   defineOptions({ inheritAttrs: false });
 
-  const tabs = [{ title: "Вкладка 1" }, { title: "Вкладка 2" }, { title: "Вкладка 3" }];
+  const { data: categoryData } = await getAllCategories();
+
+  const categories = computed(() => categoryData?.value?.data);
 </script>
 
 <template>
   <section class="full-catalog">
     <div class="full-catalog__wrapper">
-      <h2 class="full-catalog__title">Каталог</h2>
-      <AppTabs :tabs-data="tabs">
+      <h2 class="full-catalog__title">{{ item.title }}</h2>
+      <AppTabs
+        v-if="categories"
+        :tabs-data="categories"
+      >
         <template #default="{ activeIndex }">
-          <div
-            v-if="activeIndex == 0"
-            class="full-catalog__body"
-          >
-            <ProductCard
-              v-for="index in 16"
-              :key="index"
-              :product-id="1"
-              image="#"
-              image-title="r"
-              class="full-catalog__item"
-            />
-          </div>
+          <catalog-by-category
+            v-if="categories[activeIndex]"
+            :key="activeIndex"
+            :category="categories[activeIndex].id"
+          />
         </template>
       </AppTabs>
-      <div class="full-catalog__paginator">
-        <AppPaginator
-          :current-page="1"
-          :total-items="100"
-        />
-      </div>
     </div>
   </section>
 </template>
@@ -49,31 +50,6 @@
 
     &__wrapper {
       @include mixins.container;
-    }
-
-    &__body {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: clamp(#{core.$spacing-300}, 2dvw, #{core.$spacing-600});
-      margin-bottom: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-400});
-
-      @include mixins.breakpoint-lg {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      @include mixins.breakpoint-md {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      @include mixins.breakpoint-xs {
-        grid-template-columns: repeat(1, 1fr);
-      }
-    }
-
-    &__item {
-      max-height: 300px;
-      border-radius: core.$radius-200;
-      overflow: hidden;
     }
 
     &__title {
