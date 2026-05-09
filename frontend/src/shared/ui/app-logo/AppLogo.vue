@@ -23,6 +23,8 @@
   @use "~/shared/assets/styles/mixins";
 
   .app-logo {
+    display: flex;
+
     &_desktop {
       @include mixins.breakpoint-md {
         display: none;
