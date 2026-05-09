@@ -7,6 +7,7 @@
   import { computed } from "vue";
   import type { Block } from "~/pages/dynamic-page";
   import { cleanPhoneNumber } from "~/shared/lib/clean-phone-number";
+  import { getGlobals } from "~/entities/globals";
 
   interface Props extends Block {
     item: {
@@ -19,7 +20,9 @@
   defineOptions({ inheritAttrs: false });
 
   const { data: placeShopData } = await getPlaceShops();
+  const { data: globalData } = await getGlobals();
 
+  const global = computed(() => globalData?.value?.data);
   const places = computed(() => placeShopData?.value?.data);
 </script>
 
@@ -57,6 +60,54 @@
                 rounded
                 icon-only
                 aria-label="Ссылка на вк"
+                :href="icon.href"
+              >
+                <AppIcon
+                  :name="icon.icon"
+                  width="24"
+                  height="24"
+                />
+              </AppButton>
+            </div>
+          </AppCard>
+          <AppCard
+            v-if="global?.phone !== undefined || global?.email !== undefined || global?.socials !== undefined"
+            class="our-contacts__card"
+          >
+            <div
+              v-if="global?.phone !== undefined"
+              class="our-contacts__card-content"
+            >
+              <span class="our-contacts__card-content-title">Телефон:</span>
+              <a
+                :href="`tel:${cleanPhoneNumber(global.phone)}`"
+                class="our-contacts__card-content-value"
+              >
+                {{ global.phone }}
+              </a>
+            </div>
+            <div
+              v-if="global?.email !== undefined"
+              class="our-contacts__card-content"
+            >
+              <span class="our-contacts__card-content-title">Почта:</span>
+              <a
+                :href="`mailto:${global.email}`"
+                class="our-contacts__card-content-value"
+              >
+                {{ global.email }}
+              </a>
+            </div>
+            <div
+              v-if="global?.socials !== undefined"
+              class="our-contacts__socials"
+            >
+              <AppButton
+                v-for="(icon, key) of global.socials"
+                :key="key"
+                rounded
+                icon-only
+                :aria-label="icon.icon"
                 :href="icon.href"
               >
                 <AppIcon

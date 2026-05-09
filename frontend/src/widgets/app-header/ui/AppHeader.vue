@@ -88,30 +88,36 @@
           <a :href="`tel:${cleanPhoneNumber(element.phone)}`">{{ element.phone }}</a>
         </div>
         <div
-          v-if="global?.email"
+          v-if="global?.email || global?.phone"
           class="app-header__contacts"
         >
-          <a :href="`mailto:${global.email}`">{{ global.email }}</a>
+          <a
+            v-if="global.email"
+            :href="`mailto:${global.email}`"
+          >
+            {{ global.email }}
+          </a>
+          <a
+            v-if="global.phone"
+            :href="`tel:${cleanPhoneNumber(global.phone)}`"
+          >
+            {{ global.phone }}
+          </a>
         </div>
-        <div class="app-header__socials">
+        <div
+          v-if="global?.socials !== undefined"
+          class="app-header__socials"
+        >
           <AppButton
+            v-for="(icon, key) of global.socials"
+            :key="key"
             rounded
             icon-only
-            aria-label="Ссылка на вк"
+            :aria-label="icon.icon"
+            :href="icon.href"
           >
             <AppIcon
-              name="social-vk"
-              width="24"
-              height="24"
-            />
-          </AppButton>
-          <AppButton
-            rounded
-            icon-only
-            aria-label="Ссылка на макс"
-          >
-            <AppIcon
-              name="social-max"
+              :name="icon.icon"
               width="24"
               height="24"
             />
