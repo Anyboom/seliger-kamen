@@ -10,7 +10,7 @@
   ></textarea>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
   @use "~/shared/assets/styles/core";
   @use "~/shared/assets/styles/mixins";
   @use "~/shared/assets/styles/semantic";

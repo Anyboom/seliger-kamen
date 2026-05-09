@@ -69,18 +69,20 @@
         </a>
       </li>
     </ul>
-    <AppButton
-      icon-only
-      class="app-menu__mobile-button"
-      @click="toggleMobileMenu"
-    >
-      <AppIcon
-        name="menu"
-        class="app-menu__mobile-icon"
-        width="24"
-        height="24"
-      />
-    </AppButton>
+    <ClientOnly>
+      <AppButton
+        class="app-menu__mobile-button"
+        icon-only
+        @click="toggleMobileMenu"
+      >
+        <AppIcon
+          name="menu"
+          class="app-menu__mobile-icon"
+          width="24"
+          height="24"
+        />
+      </AppButton>
+    </ClientOnly>
   </nav>
 </template>
 
@@ -124,11 +126,9 @@
       z-index: 1000;
       position: relative;
       display: none;
-      opacity: 0;
 
       @include mixins.breakpoint-sm {
         display: block;
-        opacity: 1;
       }
     }
 

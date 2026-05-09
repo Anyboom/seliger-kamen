@@ -37,6 +37,12 @@ export default defineNuxtConfig({
 
   primevue: {
     autoImport: false,
+    components: {
+      include: ["Image", "DynamicDialog", "Toast", "Message"],
+    },
+    composables: {
+      include: ["useToast", "useDialog"],
+    },
     options: {
       theme: {
         preset: Aura,

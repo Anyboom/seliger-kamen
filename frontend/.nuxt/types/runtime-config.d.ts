@@ -10,15 +10,11 @@ import { RuntimeConfig as UserRuntimeConfig, PublicRuntimeConfig as UserPublicRu
       cdnURL: string,
    },
 
-   directusServer: string,
-
    nitro: {
       envPrefix: string,
    },
   }
   interface SharedPublicRuntimeConfig {
-   directusClient: string,
-
    primevue: {
       usePrimeVue: boolean,
 

@@ -1,5 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import DynamicDialog from "primevue/dynamicdialog";
+  import Toast from "primevue/toast";
+</script>
 <template>
+  <DynamicDialog />
+  <Toast />
   <main class="main-layout">
     <slot></slot>
   </main>

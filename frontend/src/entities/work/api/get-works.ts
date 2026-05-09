@@ -1,8 +1,9 @@
 import type { Work } from "~/entities/work/model/work";
 import { pathDirectus } from "~/shared/api/path-directus";
+import { useAsyncData } from "#app";
 
-export async function getWorks(params?: Record<any, any>): Promise<Work[]> {
-  const { data } = await $fetch<any>(`${pathDirectus()}/items/works`, { query: { ...params } });
-
-  return data.map((work: any) => ({ id: work.id, image: work.image, title: work.title }));
+export async function getWorks(params?: Record<any, any>) {
+  return useAsyncData<{ data: Work[] }>(["work", JSON.stringify(params)].join("-"), () =>
+    $fetch(`${pathDirectus()}/items/works`, { query: { ...params } }),
+  );
 }

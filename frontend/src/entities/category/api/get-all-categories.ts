@@ -1,7 +1,7 @@
 import { pathDirectus } from "~/shared/api/path-directus";
+import { useAsyncData } from "#app";
+import type { Category } from "~/entities/category";
 
 export async function getAllCategories() {
-  const { data } = await $fetch<any>(`${pathDirectus()}/items/categories`);
-
-  return data.map((category: any) => ({ id: category.id, title: category.title }));
+  return useAsyncData<{ data: Category[] }>("categories", () => $fetch(`${pathDirectus()}/items/categories`));
 }

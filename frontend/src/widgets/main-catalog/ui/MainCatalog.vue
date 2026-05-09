@@ -2,8 +2,8 @@
   import { AppButton } from "~/shared/ui/app-button";
   import { ProductCard } from "~/entities/product";
   import { AppTabs } from "~/shared/ui/app-tabs";
-  import { type Category, getAllCategories } from "~/entities/category";
-  import { onMounted, ref } from "vue";
+  import { getAllCategories } from "~/entities/category";
+  import { computed } from "vue";
   import type { Block } from "~/pages/dynamic-page";
 
   interface Props extends Block {
@@ -17,18 +17,19 @@
 
   defineOptions({ inheritAttrs: false });
 
-  const categories = ref<Category[]>([]);
+  const { data: categoryData } = await getAllCategories();
 
-  onMounted(async () => {
-    categories.value = await getAllCategories();
-  });
+  const categories = computed(() => categoryData?.value?.data);
 </script>
 
 <template>
   <section class="main-catalog">
     <div class="main-catalog__wrapper">
       <h2 class="main-catalog__title">{{ item.title }}</h2>
-      <AppTabs :tabs-data="categories">
+      <AppTabs
+        v-if="categories"
+        :tabs-data="categories"
+      >
         <template #default="{ activeIndex }">
           <div
             v-if="activeIndex == 0"

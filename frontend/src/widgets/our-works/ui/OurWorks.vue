@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { AppButton } from "~/shared/ui/app-button";
-  import { getWorks, type Work, WorkCard } from "~/entities/work";
+  import { getWorks, WorkCard } from "~/entities/work";
   import type { Block } from "~/pages/dynamic-page";
-  import { onMounted, ref } from "vue";
+  import { computed } from "vue";
   import { getImageFromDirectus } from "~/shared/lib/get-image-from-directus";
 
   interface Props extends Block {
@@ -14,11 +14,9 @@
 
   defineProps<Props>();
 
-  const works = ref<Work[]>([]);
+  const { data: workData } = await getWorks({ limit: 8 });
 
-  onMounted(async () => {
-    works.value = await getWorks({ limit: 8 });
-  });
+  const works = computed(() => workData?.value?.data);
 
   defineOptions({ inheritAttrs: false });
 </script>
