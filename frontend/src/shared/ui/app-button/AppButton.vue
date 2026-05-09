@@ -76,6 +76,12 @@
           width: core.$spacing-1000;
           height: core.$spacing-1000;
           padding: core.$spacing-200;
+
+          @include mixins.breakpoint-sm {
+            width: core.$spacing-800;
+            height: core.$spacing-800;
+            padding: core.$spacing-100;
+          }
         }
       }
       &_small {

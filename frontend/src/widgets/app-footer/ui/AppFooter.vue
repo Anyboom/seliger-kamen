@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { AppIcon } from "~/shared/ui/app-icon";
+  import { AppLogo } from "~/shared/ui/app-logo";
 
   defineOptions({ inheritAttrs: false });
 </script>
@@ -12,11 +12,7 @@
         class="app-footer__logo"
         aria-label="Логотип"
       >
-        <AppIcon
-          name="logo"
-          width="176px"
-          height="46px"
-        />
+        <AppLogo />
       </a>
     </div>
   </div>

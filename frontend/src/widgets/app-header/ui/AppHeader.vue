@@ -9,6 +9,7 @@
   import { useDialog, useToast } from "primevue";
   import { createFeedback, FeedbackForm } from "~/features/feedback-form";
   import { getMenu } from "~/entities/menu";
+  import { AppLogo } from "~/shared/ui/app-logo";
 
   interface Props {
     colored?: boolean;
@@ -49,6 +50,10 @@
         style: {
           width: "25vw",
         },
+        breakpoints: {
+          "960px": "75vw",
+          "640px": "90vw",
+        },
         header: "Обратная связь",
         modal: true,
       },
@@ -72,11 +77,7 @@
           class="app-header__logo"
           aria-label="Логотип"
         >
-          <AppIcon
-            name="logo"
-            width="176px"
-            height="46px"
-          />
+          <AppLogo />
         </a>
         <div
           v-for="(element, index) of places"
@@ -173,12 +174,6 @@
       }
     }
 
-    &__form-button {
-      @include mixins.breakpoint-md {
-        display: none;
-      }
-    }
-
     &__logo {
       z-index: 1000;
       position: relative;
@@ -195,6 +190,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 100%;
     }
 
     &__socials {
