@@ -44,7 +44,12 @@
       <span class="error__caption">
         {{ currentError.caption }}
       </span>
-      <AppButton class="error__button">Вернуться на главную</AppButton>
+      <AppButton
+        class="error__button"
+        href="/"
+      >
+        Вернуться на главную
+      </AppButton>
     </div>
   </NuxtLayout>
 </template>
@@ -52,18 +57,22 @@
 <style lang="scss">
   @use "~/shared/assets/styles/mixins";
   @use "~/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
 
   .error {
-    max-width: core.$spacing-1600 * 4;
+    max-width: core.$spacing-5000 * 4;
     display: flex;
     flex-direction: column;
     gap: core.$spacing-200;
+    padding: 0 core.$spacing-400;
 
     &__title {
+      color: semantic.$text-default;
       @include mixins.apply-text("heading-1");
     }
 
     &__caption {
+      color: semantic.$text-default-secondary;
       @include mixins.apply-text("body-1");
     }
 

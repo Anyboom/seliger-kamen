@@ -69,9 +69,8 @@
         </a>
       </li>
     </ul>
-    <ClientOnly>
+    <div class="app-menu__mobile-button">
       <AppButton
-        class="app-menu__mobile-button"
         icon-only
         @click="toggleMobileMenu"
       >
@@ -82,7 +81,7 @@
           height="24"
         />
       </AppButton>
-    </ClientOnly>
+    </div>
   </nav>
 </template>
 

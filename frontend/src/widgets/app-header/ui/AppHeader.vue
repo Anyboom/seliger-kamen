@@ -117,12 +117,9 @@
           </AppButton>
         </div>
 
-        <AppButton
-          class="app-header__form-button"
-          @click="showFeedbackForm"
-        >
-          Заказать звонок
-        </AppButton>
+        <div class="app-header__form-button">
+          <AppButton @click="showFeedbackForm"> Заказать звонок </AppButton>
+        </div>
       </div>
       <div class="app-header__delimiter"></div>
       <div
