@@ -21,16 +21,9 @@
             <ProductCard
               v-for="index in 16"
               :key="index"
-              class="full-catalog__item"
-            />
-          </div>
-          <div
-            v-if="activeIndex == 1"
-            class="full-catalog__body"
-          >
-            <ProductCard
-              v-for="index in 8"
-              :key="index"
+              :product-id="1"
+              image="#"
+              image-title="r"
               class="full-catalog__item"
             />
           </div>

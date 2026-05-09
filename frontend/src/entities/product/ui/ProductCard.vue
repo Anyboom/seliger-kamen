@@ -1,16 +1,31 @@
 <script setup lang="ts">
   import { AppButton } from "~/shared/ui/app-button";
+  import { getImageFromDirectus } from "~/shared/lib/get-image-from-directus";
+
+  interface Props {
+    productId: number;
+    image: string;
+    imageTitle: string;
+  }
+
+  type Emits = {
+    "order": [id: number];
+  };
+
+  const emit = defineEmits<Emits>();
+
+  defineProps<Props>();
 </script>
 
 <template>
   <div class="product-card">
     <div class="product-card__overlay">
-      <AppButton> Заказать </AppButton>
+      <AppButton @click.stop="emit('order', productId)"> Заказать </AppButton>
     </div>
     <div class="product-card__image-wrapper">
       <img
-        src="/images/about_background.png"
-        alt="Image"
+        :src="getImageFromDirectus(image)"
+        :alt="imageTitle"
         class="product-card__image"
       />
     </div>

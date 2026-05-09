@@ -1,10 +1,10 @@
 <script setup lang="ts">
   import { AppButton } from "~/shared/ui/app-button";
-  import { ProductCard } from "~/entities/product";
   import { AppTabs } from "~/shared/ui/app-tabs";
   import { getAllCategories } from "~/entities/category";
   import { computed } from "vue";
   import type { Block } from "~/pages/dynamic-page";
+  import CatalogByCategory from "~/widgets/main-catalog/ui/CatalogByCategory.vue";
 
   interface Props extends Block {
     item: {
@@ -31,26 +31,10 @@
         :tabs-data="categories"
       >
         <template #default="{ activeIndex }">
-          <div
-            v-if="activeIndex == 0"
-            class="main-catalog__body"
-          >
-            <ProductCard
-              v-for="index in 4"
-              :key="index"
-              class="main-catalog__item"
-            />
-          </div>
-          <div
-            v-if="activeIndex == 1"
-            class="main-catalog__body"
-          >
-            <ProductCard
-              v-for="index in 8"
-              :key="index"
-              class="main-catalog__item"
-            />
-          </div>
+          <catalog-by-category
+            v-if="categories[activeIndex]"
+            :category="categories[activeIndex].id"
+          />
         </template>
       </AppTabs>
       <div class="main-catalog__actions">
@@ -75,31 +59,6 @@
     &__actions {
       display: flex;
       justify-content: end;
-    }
-
-    &__body {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: clamp(#{core.$spacing-300}, 2dvw, #{core.$spacing-600});
-      margin-bottom: clamp(#{core.$spacing-200}, 2dvw, #{core.$spacing-400});
-
-      @include mixins.breakpoint-lg {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      @include mixins.breakpoint-md {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      @include mixins.breakpoint-xs {
-        grid-template-columns: repeat(1, 1fr);
-      }
-    }
-
-    &__item {
-      max-height: 300px;
-      border-radius: core.$radius-200;
-      overflow: hidden;
     }
 
     &__title {
