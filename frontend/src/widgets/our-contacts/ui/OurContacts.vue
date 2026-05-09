@@ -72,6 +72,7 @@
       <div class="our-contacts__map">
         <l-map
           ref="map"
+          :use-global-leaflet="false"
           :options="{}"
           :zoom="9"
           :center="[57.014571, 33.015289]"
