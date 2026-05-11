@@ -58,6 +58,7 @@
 
   .swiper-slide {
     width: fit-content !important;
+    height: auto;
   }
 
   .our-advantages {
@@ -79,6 +80,7 @@
       flex-direction: column;
       gap: core.$spacing-200;
       width: 350px;
+      height: 100%;
 
       @include mixins.breakpoint-sm {
         width: 300px;
