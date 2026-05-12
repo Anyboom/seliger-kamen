@@ -52,4 +52,4 @@ jobs:
           scp -o StrictHostKeyChecking=no docker/production/docker-compose.yaml ${{ secrets.SSH_USER}}@${{secrets.SSH_HOST}}:docker-compose.yml
       - name: Start application
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "DOCKER_HASH=${{ github.sha }} SMTP_USER=${{ secrets.SMTP_USER }} SMTP_USER=${{ secrets.SMTP_PASSWORD }} ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }} ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} ADMIN_SECRET=${{ secrets.ADMIN_SECRET }} docker compose up -d --force-recreate && exit"
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "DOCKER_HASH=${{ github.sha }} SMTP_USER=${{ secrets.SMTP_USER }} SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }} ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }} ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} ADMIN_SECRET=${{ secrets.ADMIN_SECRET }} docker compose up -d --force-recreate && exit"
