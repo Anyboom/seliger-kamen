@@ -45,7 +45,15 @@ services:
       CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_SRC: "array:'self',blob:,https://*"
       EXTENSIONS_AUTO_RELOAD: true
       CACHE_ENABLED: true
+      LOG_LEVEL: debug
       CACHE_AUTO_PURGE: true
+      EMAIL_TRANSPORT: smtp
+      EMAIL_SMTP_HOST: smtp.timeweb.ru
+      EMAIL_SMTP_PORT: 465
+      EMAIL_FROM: ${SMTP_USER}
+      EMAIL_SMTP_USER: ${SMTP_USER}
+      EMAIL_SMTP_PASSWORD: ${SMTP_PASSWORD}
+      EMAIL_SMTP_SECURE: true
 
 networks:
   seliger-kamen:

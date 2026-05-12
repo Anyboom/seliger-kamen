@@ -37,18 +37,37 @@
             :key="index"
             class="our-contacts__card"
           >
-            <div class="our-contacts__card-content">
+            <div
+              v-if="element?.phone"
+              class="our-contacts__card-content"
+            >
               <span class="our-contacts__card-content-title">Телефон:</span>
               <a
                 :href="`tel:${cleanPhoneNumber(element.phone)}`"
                 class="our-contacts__card-content-value"
+                v-html="element.phone"
               >
-                {{ element.phone }}
               </a>
             </div>
-            <div class="our-contacts__card-content">
+            <div
+              v-if="element?.address"
+              class="our-contacts__card-content"
+            >
               <span class="our-contacts__card-content-title">Адрес:</span>
-              <span class="our-contacts__card-content-value">{{ element.address }}</span>
+              <span
+                class="our-contacts__card-content-value"
+                v-html="element.address"
+              ></span>
+            </div>
+            <div
+              v-if="element?.schedule"
+              class="our-contacts__card-content"
+            >
+              <span class="our-contacts__card-content-title">График работы:</span>
+              <span
+                class="our-contacts__card-content-value"
+                v-html="element.schedule"
+              ></span>
             </div>
             <div
               v-if="element.socials"
@@ -163,8 +182,10 @@
     }
 
     &__card {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      display: flex;
+      gap: core.$spacing-600;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
 
     &__map {

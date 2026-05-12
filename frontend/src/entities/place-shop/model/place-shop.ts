@@ -4,5 +4,6 @@ export type PlaceShop = {
   longitude: string;
   address: string;
   phone: string;
+  schedule: string;
   socials?: { icon: string; href: string }[];
 };

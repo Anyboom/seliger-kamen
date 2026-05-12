@@ -31,7 +31,6 @@
         <template #default="{ activeIndex }">
           <catalog-by-category
             v-if="categories[activeIndex]"
-            :key="activeIndex"
             :category="categories[activeIndex].id"
           />
         </template>

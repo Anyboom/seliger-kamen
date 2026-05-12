@@ -43,8 +43,8 @@
       </div>
       <div class="full-our-works__body">
         <WorkCard
-          v-for="(element, index) of works"
-          :key="index"
+          v-for="element of works"
+          :key="element.id"
           :image-url="getImageFromDirectus(element.image)"
           :image-name="element.title"
           class="full-our-works__item"

@@ -71,8 +71,8 @@
 <template>
   <div class="catalog-by-category">
     <ProductCard
-      v-for="(item, index) of products"
-      :key="index"
+      v-for="item of products"
+      :key="item.id"
       :product-id="item.id"
       :image="item.image"
       :image-title="item.title"
