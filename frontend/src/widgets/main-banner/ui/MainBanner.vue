@@ -54,6 +54,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
+      width: 100%;
     }
 
     &__wrapper {
