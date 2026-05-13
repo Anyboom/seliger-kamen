@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
     "paths": {
-      "nuxt": [
-        "../node_modules/nuxt"
-      ],
       "@nuxt/devtools": [
         "../node_modules/@nuxt/devtools"
       ],
@@ -15,6 +12,21 @@
       ],
       "@nuxt/schema": [
         "../node_modules/@nuxt/schema"
+      ],
+      "nuxt": [
+        "../node_modules/nuxt"
+      ],
+      "vite/client": [
+        "../node_modules/vite/client"
+      ],
+      "nitropack/types": [
+        "../node_modules/nitropack/types"
+      ],
+      "nitropack/runtime": [
+        "../node_modules/nitropack/runtime"
+      ],
+      "nitropack": [
+        "../node_modules/nitropack"
       ],
       "defu": [
         "../node_modules/defu"
@@ -30,18 +42,6 @@
       ],
       "crossws": [
         "../node_modules/crossws"
-      ],
-      "vite/client": [
-        "../node_modules/vite/client"
-      ],
-      "nitropack/types": [
-        "../node_modules/nitropack/types"
-      ],
-      "nitropack/runtime": [
-        "../node_modules/nitropack/runtime"
-      ],
-      "nitropack": [
-        "../node_modules/nitropack"
       ],
       "~": [
         "../src"
@@ -161,6 +161,7 @@
     "../node_modules/nuxt/node_modules",
     "../node_modules/@primevue/nuxt-module/node_modules",
     "../node_modules/@nuxtjs/leaflet/node_modules",
+    "../node_modules/nuxt-vitalizer/node_modules",
     "../node_modules/@nuxt/devtools/node_modules",
     "../node_modules/@nuxt/telemetry/node_modules",
     "../dist",

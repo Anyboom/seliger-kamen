@@ -79,5 +79,9 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@primevue/nuxt-module", "@nuxtjs/leaflet"],
+  vitalizer: {
+    disableStylesheets: "entry",
+  },
+
+  modules: ["@primevue/nuxt-module", "@nuxtjs/leaflet", "nuxt-vitalizer"],
 });
