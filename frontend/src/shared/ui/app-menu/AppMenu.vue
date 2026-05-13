@@ -17,6 +17,12 @@
 
   function toggleMobileMenu(): void {
     isShowMobileMenu.value = !isShowMobileMenu.value;
+
+    if (isShowMobileMenu.value) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.removeProperty("overflow");
+    }
   }
 
   defineProps<Props>();
@@ -102,7 +108,7 @@
       }
 
       &--mobile {
-        position: absolute;
+        position: fixed;
         background: semantic.$background-default-secondary;
         inset: 0;
         align-items: center;
