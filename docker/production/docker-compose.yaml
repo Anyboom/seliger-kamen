@@ -17,7 +17,14 @@ services:
     image: danilkavolkov/seliger-kamen-frontend:${DOCKER_HASH}
     networks:
       - seliger-kamen
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "https://seliger-kamen.ru" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
     deploy:
+      replicas: 3
       update_config:
         parallelism: 1
         delay: 10s
@@ -38,7 +45,14 @@ services:
       - ./database:/directus/database
       - ./uploads:/directus/uploads
     user: "1000:1000"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "https://directus.seliger-kamen.ru" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
     deploy:
+      replicas: 2
       update_config:
         parallelism: 1
         delay: 10s
