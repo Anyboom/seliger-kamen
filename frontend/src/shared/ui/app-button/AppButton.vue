@@ -8,6 +8,7 @@
     size?: "small" | "medium";
     disabled?: boolean;
     href?: string;
+    target?: string;
   }
 
   const {
@@ -17,6 +18,7 @@
     size = "medium",
     disabled = false,
     href = undefined,
+    target = "_self",
   } = defineProps<Props>();
 
   const isLink = computed(() => href && !disabled);
@@ -28,7 +30,7 @@
     :is="component"
     class="app-button"
     :href="href"
-    target="_blank"
+    :target="target"
     :class="{
       'app-button_variant_primary': variant == 'primary',
       'app-button_variant_secondary': variant == 'secondary',

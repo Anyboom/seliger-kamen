@@ -41,6 +41,7 @@
         v-for="(tab, index) in tabsData"
         :key="index"
         :href="tab.href"
+        target="_blank"
         :variant="hasActiveIndex(index)"
         @click="changeIndex(index)"
       >
