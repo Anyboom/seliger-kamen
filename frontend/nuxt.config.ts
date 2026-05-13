@@ -80,7 +80,8 @@ export default defineNuxtConfig({
   },
 
   vitalizer: {
-    disableStylesheets: "entry",
+    disableStylesheets: false,
+    disablePrefetchLinks: "dynamicImports",
   },
 
   nitro: {
