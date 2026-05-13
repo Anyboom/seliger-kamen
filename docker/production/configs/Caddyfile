@@ -1,6 +1,22 @@
 seliger-kamen.ru {
     encode zstd gzip
 
+    @static {
+        path *.woff *.woff2 *.ttf *.eot *.otf
+        path *.css *.js *.mjs
+        path *.png *.jpg *.jpeg *.gif *.ico *.svg *.webp
+        path *.json *.xml
+    }
+
+    header @static Cache-Control "public, max-age=31536000, immutable"
+
+    @html {
+        path *.html
+        path /
+    }
+
+    header @html Cache-Control "public, max-age=3600, must-revalidate"
+
     reverse_proxy seliger-kamen-frontend:3000
 }
 
