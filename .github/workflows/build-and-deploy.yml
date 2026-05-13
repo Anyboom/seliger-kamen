@@ -20,8 +20,8 @@ jobs:
           context: .
           file: docker/production/directus.Dockerfile
           push: true
-          no-cache: true
           tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/seliger-kamen-directus:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/seliger-kamen-directus:${{ github.sha }}
       - name: Build and push frontend
         uses: docker/build-push-action@v4
@@ -29,8 +29,8 @@ jobs:
           context: .
           file: docker/production/frontend.Dockerfile
           push: true
-          no-cache: true
           tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/seliger-kamen-frontend:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/seliger-kamen-frontend:${{ github.sha }}
   deploy:
     name: Deploy
@@ -44,12 +44,26 @@ jobs:
         with:
           ssh-private-key: |
             ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Create .env file locally
+        uses: SpicyPizza/create-envfile@v2
+        with:
+          envkey_DOCKER_HASH: ${{ github.sha }}
+          envkey_SMTP_USER: ${{ secrets.SMTP_USER }}
+          envkey_SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          envkey_ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+          envkey_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          envkey_ADMIN_SECRET: ${{ secrets.ADMIN_SECRET }}
+          file_name: .env
+          directory: ./
       - name: Copy caddyfile
         run: |
           scp -o StrictHostKeyChecking=no docker/production/configs/Caddyfile ${{ secrets.SSH_USER}}@${{secrets.SSH_HOST}}:Caddyfile
       - name: Copy docker-compose.yml
         run: |
           scp -o StrictHostKeyChecking=no docker/production/docker-compose.yaml ${{ secrets.SSH_USER}}@${{secrets.SSH_HOST}}:docker-compose.yml
+      - name: Copy .env to server
+        run: |
+          scp -o StrictHostKeyChecking=no .env ${{ secrets.SSH_USER}}@${{secrets.SSH_HOST}}:.env
       - name: Start application
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "DOCKER_HASH=${{ github.sha }} SMTP_USER=${{ secrets.SMTP_USER }} SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }} ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }} ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} ADMIN_SECRET=${{ secrets.ADMIN_SECRET }} docker compose up -d --force-recreate && exit"
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose up -d && exit"
