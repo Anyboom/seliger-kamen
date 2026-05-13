@@ -2,7 +2,6 @@ name: "seliger-kamen"
 
 services:
   seliger-kamen-caddy:
-    container_name: seliger-kamen-caddy
     image: caddy:2.11.2
     ports:
       - "80:80"
@@ -18,21 +17,41 @@ services:
 
   seliger-kamen-frontend:
     image: danilkavolkov/seliger-kamen-frontend:${DOCKER_HASH}
-    container_name: seliger-kamen-frontend
-    pull_policy: always
     networks:
       - seliger-kamen
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 2
 
   seliger-kamen-directus:
     image: danilkavolkov/seliger-kamen-directus:${DOCKER_HASH}
-    container_name: seliger-kamen-directus
-    pull_policy: always
     networks:
       - seliger-kamen
     volumes:
       - ./database:/directus/database
       - ./uploads:/directus/uploads
     user: "1000:1000"
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 2
     environment:
       ADMIN_EMAIL: ${ADMIN_EMAIL}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
@@ -43,17 +62,17 @@ services:
       CORS_ENABLED: "true"
       CORS_ORIGIN: "true"
       CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_SRC: "array:'self',blob:,https://*"
-      EXTENSIONS_AUTO_RELOAD: true
-      CACHE_ENABLED: true
-      LOG_LEVEL: debug
-      CACHE_AUTO_PURGE: true
-      EMAIL_TRANSPORT: smtp
-      EMAIL_SMTP_HOST: smtp.timeweb.ru
-      EMAIL_SMTP_PORT: 465
+      EXTENSIONS_AUTO_RELOAD: "true"
+      CACHE_ENABLED: "true"
+      LOG_LEVEL: "debug"
+      CACHE_AUTO_PURGE: "true"
+      EMAIL_TRANSPORT: "smtp"
+      EMAIL_SMTP_HOST: "smtp.timeweb.ru"
+      EMAIL_SMTP_PORT: "465"
       EMAIL_FROM: ${SMTP_USER}
       EMAIL_SMTP_USER: ${SMTP_USER}
       EMAIL_SMTP_PASSWORD: ${SMTP_PASSWORD}
-      EMAIL_SMTP_SECURE: true
+      EMAIL_SMTP_SECURE: "true"
 
 networks:
   seliger-kamen:

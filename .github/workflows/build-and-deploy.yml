@@ -66,4 +66,4 @@ jobs:
           scp -o StrictHostKeyChecking=no .env ${{ secrets.SSH_USER}}@${{secrets.SSH_HOST}}:.env
       - name: Start application
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose up -d && exit"
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "set -a; . ./.env; set +a; docker stack deploy -c docker-compose.yml seliger-kamen"
