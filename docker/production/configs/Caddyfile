@@ -1,15 +1,9 @@
 seliger-kamen.ru {
-    reverse_proxy seliger-kamen-frontend:3000 {
-        header_down X-Served-By {system.hostname}
-        header_down X-Response-Time {time.now.unix}
-    }
+    reverse_proxy seliger-kamen-frontend:3000
 }
 
 directus.seliger-kamen.ru {
-    reverse_proxy seliger-kamen-directus:8055 {
-        header_down X-Served-By {system.hostname}
-        header_down X-Response-Time {time.now.unix}
-    }
+    reverse_proxy seliger-kamen-directus:8055
 
     handle /websocket {
         reverse_proxy seliger-kamen-directus:8055 {
