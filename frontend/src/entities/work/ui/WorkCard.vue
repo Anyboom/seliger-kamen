@@ -1,9 +1,14 @@
 <script setup lang="ts">
   import Image from "primevue/image";
+  import { getImageFromDirectus } from "~/shared/lib/get-image-from-directus";
 
   interface Props {
-    imageUrl: string;
-    imageName: string;
+    image: {
+      id: string;
+      title: string;
+      height: number;
+      width: number;
+    };
   }
 
   defineProps<Props>();
@@ -12,8 +17,10 @@
 <template>
   <div class="work-card">
     <Image
-      :src="imageUrl"
-      :alt="imageName"
+      :src="getImageFromDirectus(image.id)"
+      :alt="image.title"
+      :height="image.height"
+      :width="image.width"
       class="work-card__image-wrapper"
       image-class="work-card__image"
       preview

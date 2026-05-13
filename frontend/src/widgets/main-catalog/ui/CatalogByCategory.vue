@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from "vue";
-  import { getProducts, ProductCard } from "~/entities/product";
+  import { getProducts, type Product, ProductCard } from "~/entities/product";
   import { useDialog, useToast } from "primevue";
   import { createFeedback, FeedbackForm } from "~/features/feedback-form";
 
@@ -20,7 +20,7 @@
   const dialogService = useDialog();
   const toastService = useToast();
 
-  const products = computed(() => productsData?.value?.data);
+  const products = computed<Product[]>(() => productsData?.value?.data || []);
 
   function orderProduct(id: number) {
     dialogService.open(FeedbackForm, {
@@ -59,7 +59,6 @@
       :key="item.id"
       :product-id="item.id"
       :image="item.image"
-      :image-title="item.title"
       class="catalog-by-category__item"
       @order="orderProduct"
     />

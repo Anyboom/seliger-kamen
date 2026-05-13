@@ -1,9 +1,8 @@
 <script setup lang="ts">
   import { AppButton } from "~/shared/ui/app-button";
-  import { getWorks, WorkCard } from "~/entities/work";
+  import { getWorks, type Work, WorkCard } from "~/entities/work";
   import type { Block } from "~/pages/dynamic-page";
   import { computed } from "vue";
-  import { getImageFromDirectus } from "~/shared/lib/get-image-from-directus";
 
   interface Props extends Block {
     item: {
@@ -16,7 +15,7 @@
 
   const { data: workData } = await getWorks({ limit: 8 });
 
-  const works = computed(() => workData?.value?.data);
+  const works = computed<Work[] | []>(() => workData?.value?.data || []);
 
   defineOptions({ inheritAttrs: false });
 </script>
@@ -32,8 +31,7 @@
         <WorkCard
           v-for="(element, index) of works"
           :key="index"
-          :image-url="getImageFromDirectus(element.image)"
-          :image-name="element.title"
+          :image="element.image"
           class="our-works__item"
         />
       </div>

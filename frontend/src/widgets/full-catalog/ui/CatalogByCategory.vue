@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed, ref } from "vue";
-  import { getProducts, getTotalProducts, ProductCard } from "~/entities/product";
+  import { getProducts, getTotalProducts, type Product, ProductCard } from "~/entities/product";
   import { useDialog, useToast } from "primevue";
   import { createFeedback, FeedbackForm } from "~/features/feedback-form";
   import { AppPaginator } from "~/shared/ui/app-paginator";
@@ -24,7 +24,7 @@
   const dialogService = useDialog();
 
   const toastService = useToast();
-  const products = computed(() => productsData?.value?.data);
+  const products = computed<Product[]>(() => productsData?.value?.data || []);
 
   const optionsTotal = computed(() => ({
     "filter[category]": category,
@@ -75,7 +75,6 @@
       :key="item.id"
       :product-id="item.id"
       :image="item.image"
-      :image-title="item.title"
       class="catalog-by-category__item"
       @order="orderProduct"
     />

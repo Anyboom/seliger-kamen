@@ -1,6 +1,11 @@
 export type Product = {
   id: number;
   category: number;
-  image: string;
+  image: {
+    id: string;
+    title: string;
+    height: number;
+    width: number;
+  };
   title: string;
 };

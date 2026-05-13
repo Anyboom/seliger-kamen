@@ -6,7 +6,7 @@ import { type MaybeRefOrGetter, toValue } from "vue";
 export async function getProducts(params: MaybeRefOrGetter<object>) {
   return useAsyncData<{ data: Product[] }>(
     ["products", JSON.stringify(toValue(params))].join("-"),
-    () => $fetch(`${pathDirectus()}/items/products`, { query: { ...toValue(params) } }),
+    () => $fetch(`${pathDirectus()}/items/products?fields=*.*`, { query: { ...toValue(params) } }),
     { watch: [params] },
   );
 }

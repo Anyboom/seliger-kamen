@@ -1,8 +1,7 @@
 <script setup lang="ts">
-  import { getTotalWorks, getWorks, WorkCard } from "~/entities/work";
+  import { getTotalWorks, getWorks, type Work, WorkCard } from "~/entities/work";
   import type { Block } from "~/pages/dynamic-page";
   import { computed, ref } from "vue";
-  import { getImageFromDirectus } from "~/shared/lib/get-image-from-directus";
   import { AppPaginator } from "~/shared/ui/app-paginator";
 
   interface Props extends Block {
@@ -26,7 +25,7 @@
 
   const totalWorks = computed(() => totalWorksData?.value?.data?.[0]?.count);
 
-  const works = computed(() => workData?.value?.data);
+  const works = computed<Work[]>(() => workData?.value?.data || []);
 
   function changePage(page: number) {
     currentPage.value = page;
@@ -45,8 +44,7 @@
         <WorkCard
           v-for="element of works"
           :key="element.id"
-          :image-url="getImageFromDirectus(element.image)"
-          :image-name="element.title"
+          :image="element.image"
           class="full-our-works__item"
         />
       </div>

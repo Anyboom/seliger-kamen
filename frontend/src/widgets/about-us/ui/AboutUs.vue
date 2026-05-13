@@ -9,6 +9,8 @@
       background: {
         id: string;
         title: string;
+        height: number;
+        width: number;
       };
     };
   }
@@ -28,6 +30,8 @@
         <img
           :src="getImageFromDirectus(item.background.id)"
           :alt="item.background.title"
+          :width="item.background.width"
+          :height="item.background.height"
           class="about-us__image"
         />
       </div>

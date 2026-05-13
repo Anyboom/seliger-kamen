@@ -9,6 +9,9 @@
       caption: string;
       background: {
         id: string;
+        title: string;
+        height: number;
+        width: number;
       };
     };
   }
@@ -20,10 +23,14 @@
 
 <template>
   <div class="app-banner">
-    <div
-      class="app-banner__wrapper"
-      :style="{ 'background-image': `url(${getImageFromDirectus(item.background.id)})` }"
-    >
+    <div class="app-banner__wrapper">
+      <img
+        class="app-banner__background"
+        :src="getImageFromDirectus(item.background.id)"
+        :height="item.background.height"
+        :width="item.background.width"
+        :alt="item.background.title"
+      />
       <AppHeader :colored="false" />
       <div class="app-banner__body">
         <h1 class="app-banner__title">{{ item.title }}</h1>
@@ -43,10 +50,16 @@
   .app-banner {
     @include mixins.container;
 
+    &__background {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+
     &__wrapper {
       border-radius: core.$radius-200;
-      background-repeat: no-repeat;
-      background-size: cover;
+      overflow: hidden;
+      position: relative;
     }
 
     &__body {

@@ -4,8 +4,7 @@
 
   interface Props {
     productId: number;
-    image: string;
-    imageTitle: string;
+    image: { id: string; title: string; height: number; width: number };
   }
 
   type Emits = {
@@ -24,8 +23,10 @@
     </div>
     <div class="product-card__image-wrapper">
       <img
-        :src="getImageFromDirectus(image)"
-        :alt="imageTitle"
+        :src="getImageFromDirectus(image.id)"
+        :height="image.height"
+        :width="image.width"
+        :alt="image.title"
         class="product-card__image"
       />
     </div>
