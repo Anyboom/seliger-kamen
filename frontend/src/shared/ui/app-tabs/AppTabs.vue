@@ -3,10 +3,10 @@
   import { AppButton } from "~/shared/ui/app-button/index";
 
   interface Props {
-    tabsData: { title: string }[];
+    tabsData: { title: string; href: string }[];
   }
 
-  defineProps<Props>();
+  const { tabsData } = defineProps<Props>();
 
   const activeIndex = ref(0);
 
@@ -17,6 +17,10 @@
   const emit = defineEmits<Emits>();
 
   function changeIndex(index: number) {
+    if (tabsData?.[index]?.href) {
+      return;
+    }
+
     activeIndex.value = index;
     emit("changeIndex", index);
   }
@@ -36,6 +40,7 @@
       <AppButton
         v-for="(tab, index) in tabsData"
         :key="index"
+        :href="tab.href"
         :variant="hasActiveIndex(index)"
         @click="changeIndex(index)"
       >

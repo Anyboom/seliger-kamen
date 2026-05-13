@@ -28,6 +28,7 @@
     :is="component"
     class="app-button"
     :href="href"
+    target="_blank"
     :class="{
       'app-button_variant_primary': variant == 'primary',
       'app-button_variant_secondary': variant == 'secondary',
