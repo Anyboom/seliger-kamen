@@ -1,8 +1,18 @@
 seliger-kamen.ru {
+    header {
+        X-Served-By {system.hostname}
+        X-Response-Time {time.now.unix}
+    }
+
     reverse_proxy seliger-kamen-frontend:3000
 }
 
 directus.seliger-kamen.ru {
+    header {
+        X-Served-By {system.hostname}
+        X-Response-Time {time.now.unix}
+    }
+
     reverse_proxy seliger-kamen-directus:8055
 
     handle /websocket {
