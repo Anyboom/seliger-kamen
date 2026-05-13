@@ -8,4 +8,10 @@ RUN npm install && npm run build
 
 FROM directus/directus:11.17.4 AS production-stage
 
+USER root
+
+RUN apk add --no-cache curl
+
+USER node
+
 COPY --from=build-stage /usr/src/app/directus-extensions-resolve-route ./extensions/directus-extensions-resolve-route

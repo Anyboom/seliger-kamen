@@ -18,7 +18,7 @@ services:
     networks:
       - seliger-kamen
     healthcheck:
-      test: [ "CMD", "curl", "-f", "https://seliger-kamen.ru" ]
+      test: [ "CMD", "curl", "-f", "http://localhost:3000" ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -46,7 +46,7 @@ services:
       - ./uploads:/directus/uploads
     user: "1000:1000"
     healthcheck:
-      test: [ "CMD", "curl", "-f", "https://directus.seliger-kamen.ru" ]
+      test: [ "CMD", "curl", "-f", "http://localhost:8055" ]
       interval: 30s
       timeout: 10s
       retries: 3
