@@ -89,9 +89,9 @@
     }
 
     &__item {
-      max-height: 300px;
       border-radius: core.$radius-200;
       overflow: hidden;
+      height: fit-content;
     }
   }
 </style>
