@@ -90,12 +90,44 @@ export default defineNuxtConfig({
       gzip: true,
       brotli: true,
     },
+    routeRules: {
+      "/_nuxt/**": {
+        headers: {
+          "Cache-Control": "public, max-age=31536000, immutable",
+        },
+      },
+
+      "/**/*.{png,jpg,jpeg,gif,webp}": {
+        headers: {
+          "Cache-Control": "public, max-age=2592000, stale-while-revalidate=86400",
+        },
+      },
+
+      "/**/*.svg": {
+        headers: {
+          "Cache-Control": "public, max-age=86400",
+        },
+      },
+
+      "/**/*.{css,js,mjs}": {
+        headers: {
+          "Cache-Control": "public, max-age=31536000, immutable",
+        },
+      },
+
+      "/**/*.{woff,woff2,ttf,eot}": {
+        headers: {
+          "Cache-Control": "public, max-age=31536000, immutable",
+        },
+      },
+
+      "/{favicon.ico,robots.txt,sitemap.xml}": {
+        headers: {
+          "Cache-Control": "public, max-age=86400",
+        },
+      },
+    },
   },
 
-  modules: [
-    "@primevue/nuxt-module",
-    "@nuxtjs/leaflet",
-    "nuxt-vitalizer",
-    "@nuxtjs/fontaine",
-  ],
+  modules: ["@primevue/nuxt-module", "@nuxtjs/leaflet", "nuxt-vitalizer", "@nuxtjs/fontaine"],
 });

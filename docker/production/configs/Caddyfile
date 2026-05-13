@@ -1,29 +1,12 @@
 seliger-kamen.ru {
-    encode {
-        gzip
-        zstd
-        br
-        minimum_length 256
-    }
+    encode zstd gzip
 
-    header_up Accept-Encoding {http.request.header.Accept-Encoding}
-
-    reverse_proxy seliger-kamen-frontend:3000 {
-        header_up Accept-Encoding {http.request.header.Accept-Encoding}
-
-        transport http {
-            read_timeout 30s
-            write_timeout 30s
-        }
-    }
-
-    log {
-        output file /var/log/caddy/compression.log
-        level INFO
-    }
+    reverse_proxy seliger-kamen-frontend:3000
 }
 
 directus.seliger-kamen.ru {
+    encode zstd gzip
+
     reverse_proxy seliger-kamen-directus:8055
 
     handle /websocket {
