@@ -14,6 +14,7 @@ declare module "#build/plugins.server.mjs";
 declare module "#build/test-component-wrapper.mjs";
 declare module "#build/primevue-style.mjs";
 declare module "#build/primevue-plugin.mjs";
+declare module "#build/font-fallback-inlining-plugin.server.ts";
 declare module "#build/devtools/settings.mjs";
 declare module "#build/runtime.vue-devtools-client.FYq1jx0sr5koJ6BFFDsAEtccQz36rQE6rd7vOb5ypWM.js";
 declare module "#build/routes.mjs";

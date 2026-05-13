@@ -92,5 +92,10 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@primevue/nuxt-module", "@nuxtjs/leaflet", "nuxt-vitalizer"],
+  modules: [
+    "@primevue/nuxt-module",
+    "@nuxtjs/leaflet",
+    "nuxt-vitalizer",
+    "@nuxtjs/fontaine",
+  ],
 });
