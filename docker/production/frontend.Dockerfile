@@ -13,6 +13,8 @@ FROM node:22-alpine AS production-stage
 
 WORKDIR /usr/src/app
 
+RUN apk add --no-cache curl
+
 COPY --from=build-stage /usr/src/app/.output /usr/src/app
 
 EXPOSE 3000

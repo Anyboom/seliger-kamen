@@ -51,6 +51,19 @@
       justify-content: center;
       background: rgba(0, 0, 0, 0.3);
       color: semantic.$text-default-negative;
+
+      @include mixins.breakpoint-md {
+        inset: unset;
+        bottom: 0;
+        left: 0;
+        opacity: 1;
+        right: 0;
+        padding: 10px;
+
+        button {
+          width: 100%;
+        }
+      }
     }
 
     &__image-wrapper {
