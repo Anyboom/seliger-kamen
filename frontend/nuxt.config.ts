@@ -83,5 +83,13 @@ export default defineNuxtConfig({
     disableStylesheets: "entry",
   },
 
+  nitro: {
+    minify: true,
+    compressPublicAssets: {
+      gzip: true,
+      brotli: true,
+    },
+  },
+
   modules: ["@primevue/nuxt-module", "@nuxtjs/leaflet", "nuxt-vitalizer"],
 });

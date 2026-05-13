@@ -26,6 +26,7 @@
     <div class="app-banner__wrapper">
       <img
         class="app-banner__background"
+        fetchpriority="high"
         :src="getImageFromDirectus(item.background.id)"
         :height="item.background.height"
         :width="item.background.width"

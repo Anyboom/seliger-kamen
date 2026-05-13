@@ -1,5 +1,5 @@
-/// <reference types="@nuxtjs/leaflet" />
 /// <reference types="@primevue/nuxt-module" />
+/// <reference types="@nuxtjs/leaflet" />
 /// <reference types="nuxt-vitalizer" />
 /// <reference types="@nuxt/devtools" />
 /// <reference types="@nuxt/telemetry" />
