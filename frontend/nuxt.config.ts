@@ -91,6 +91,11 @@ export default defineNuxtConfig({
       brotli: true,
     },
     routeRules: {
+      "/api/directus/**": {
+        // eslint-disable-next-line sonarjs/no-clear-text-protocols
+        proxy: "http://seliger-kamen-directus:8055/**",
+      },
+
       "/_nuxt/**": {
         headers: {
           "Cache-Control": "public, max-age=31536000, immutable",
