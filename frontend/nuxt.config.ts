@@ -59,6 +59,17 @@ export default defineNuxtConfig({
 
   app: {
     head: {
+      meta: [
+        {
+          name: "yandex-verification",
+          key: "403f1c47a04aa29f",
+        },
+        {
+          name: "keywords",
+          content:
+            "Осташков, Памятники осташков, Заказать памятник в Осташкове, Селигер Камень, Памятники в Осташкове, Памятники Осташков, Сделать памятник в Осташкове, Сделать памятник",
+        },
+      ],
       link: [
         {
           rel: "icon",
