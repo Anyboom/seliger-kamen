@@ -62,7 +62,7 @@ export default defineNuxtConfig({
       meta: [
         {
           name: "yandex-verification",
-          key: "403f1c47a04aa29f",
+          content: "403f1c47a04aa29f",
         },
         {
           name: "keywords",
